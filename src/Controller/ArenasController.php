@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: corentin
+ * Date: 13/10/16
+ * Time: 23:36
+ */
+
+namespace App\Controller;
+
+use App\Controller\AppController;
+
+class ArenasController extends AppController
+{
+
+    public function index()
+    {
+        $this->set('myname', "Corentin Leal");
+    }
+
+    public function login()
+    {
+
+    }
+
+    public function fighter()
+    {
+
+    }
+
+    public function sight()
+    {
+
+    }
+
+    public function diary()
+    {
+
+    }
+}
