@@ -17,6 +17,7 @@ class ArenasController extends AppController
     public function index()
     {
         $this->set('myname', "Corentin Leal");
+
         $this->loadModel('Fighters');
         $var=$this->Fighters->getBestFighter();
         $this->set('test', $var);

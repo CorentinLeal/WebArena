@@ -21,19 +21,25 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <?= $cakeDescription ?>:
         <?= $this->fetch('title') ?>
     </title>
     <?= $this->Html->meta('icon') ?>
 
     <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('cake.css') ?>
+    <?= $this->Html->css('webarena.css') ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
 <body>
+    <header>
+        <?php echo $this->Html->link('Home', '/'); ?>
+        <?php echo $this->Html->link('Fighter', array('controller' => 'Arenas', 'action' => 'fighter')); ?>
+        <?php echo $this->Html->link('Login', array('controller' => 'Arenas', 'action' => 'login')); ?>
+        <?php echo $this->Html->link('Diary', array('controller' => 'Arenas', 'action' => 'diary')); ?>
+        <?php echo $this->Html->link('Vision', array('controller' => 'Arenas', 'action' => 'sight')); ?>
+    </header>
     <nav class="top-bar expanded" data-topbar role="navigation">
         <ul class="title-area large-3 medium-4 columns">
             <li class="name">
@@ -52,6 +58,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <?= $this->fetch('content') ?>
     </div>
     <footer>
+        <p>Group : SI1-12</p>
+        <p>Members: DUBAELE Rémi, LEAL Corentin, LIMMERMONT Florian, PLANCHE Logan</p>
+        <p>Options: DG</p>
+        <p>Github: https://github.com/CorentinLeal/WebArena</p>
     </footer>
 </body>
 </html>
