@@ -9,6 +9,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use App\Model\Table\FightersTable;
 
 class ArenasController extends AppController
 {
@@ -16,6 +17,9 @@ class ArenasController extends AppController
     public function index()
     {
         $this->set('myname', "Corentin Leal");
+        $this->loadModel('Fighters');
+        $var=$this->Fighters->getBestFighter();
+        $this->set('test', $var);
     }
 
     public function login()
