@@ -1,9 +1,11 @@
-<?php $this->assign('title', 'index');?>
+<?php $this->assign('title', 'index'); ?>
 
-Bienvenue <?php echo $myname;?> dans WebArena
+Bienvenue <?php echo $myname; ?> dans WebArena
 <br>
 
 
-Test : <?php foreach ($test as $toto){echo $toto;};?>
+Test : <?php foreach ($test as $toto) {
+    echo $toto;
+}; ?>
 
 

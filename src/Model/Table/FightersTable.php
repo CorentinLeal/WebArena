@@ -12,8 +12,9 @@ use Cake\ORM\Table;
 
 class FightersTable extends Table
 {
-    public function getBestFighter(){
-        $test=$this->find('all')->order('level')->limit(1);
+    public function getBestFighter()
+    {
+        $test = $this->find('all')->order('level')->limit(1);
         return $test->toArray();
     }
 }

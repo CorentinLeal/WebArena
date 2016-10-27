@@ -51,10 +51,11 @@ class PlayersController extends AppController
         $this->set('player', $player);
     }
 
-    public function login(){
-        if ($this->request->is('post')){
+    public function login()
+    {
+        if ($this->request->is('post')) {
             $player = $this->Auth->identify();
-            if ($player){
+            if ($player) {
                 $this->Auth->setUser($player);
                 return $this->redirect($this->Auth->redirectUrl());
             }
@@ -62,7 +63,8 @@ class PlayersController extends AppController
         }
     }
 
-    public function logout(){
+    public function logout()
+    {
         return $this->redirect($this->Auth->logout());
     }
 

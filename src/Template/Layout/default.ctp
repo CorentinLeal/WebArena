@@ -33,35 +33,35 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
-    <header>
-        <?php echo $this->Html->link('Home', '/'); ?>
-        <?php echo $this->Html->link('Fighter', array('controller' => 'Arenas', 'action' => 'fighter')); ?>
-        <?php echo $this->Html->link('Login', array('controller' => 'Arenas', 'action' => 'login')); ?>
-        <?php echo $this->Html->link('Diary', array('controller' => 'Arenas', 'action' => 'diary')); ?>
-        <?php echo $this->Html->link('Vision', array('controller' => 'Arenas', 'action' => 'sight')); ?>
-    </header>
-    <nav class="top-bar expanded" data-topbar role="navigation">
-        <ul class="title-area large-3 medium-4 columns">
-            <li class="name">
-                <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-            </li>
+<header>
+    <?php echo $this->Html->link('Home', '/'); ?>
+    <?php echo $this->Html->link('Fighter', array('controller' => 'Arenas', 'action' => 'fighter')); ?>
+    <?php echo $this->Html->link('Login', array('controller' => 'Arenas', 'action' => 'login')); ?>
+    <?php echo $this->Html->link('Diary', array('controller' => 'Arenas', 'action' => 'diary')); ?>
+    <?php echo $this->Html->link('Vision', array('controller' => 'Arenas', 'action' => 'sight')); ?>
+</header>
+<nav class="top-bar expanded" data-topbar role="navigation">
+    <ul class="title-area large-3 medium-4 columns">
+        <li class="name">
+            <h1><a href=""><?= $this->fetch('title') ?></a></h1>
+        </li>
+    </ul>
+    <div class="top-bar-section">
+        <ul class="right">
+            <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
+            <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
         </ul>
-        <div class="top-bar-section">
-            <ul class="right">
-                <li><a target="_blank" href="http://book.cakephp.org/3.0/">Documentation</a></li>
-                <li><a target="_blank" href="http://api.cakephp.org/3.0/">API</a></li>
-            </ul>
-        </div>
-    </nav>
-    <?= $this->Flash->render() ?>
-    <div class="container clearfix">
-        <?= $this->fetch('content') ?>
     </div>
-    <footer>
-        <p>Group : SI1-12</p>
-        <p>Members: DUBAELE Rémi, LEAL Corentin, LIMMERMONT Florian, PLANCHE Logan</p>
-        <p>Options: DG</p>
-        <p>Github: https://github.com/CorentinLeal/WebArena</p>
-    </footer>
+</nav>
+<?= $this->Flash->render() ?>
+<div class="container clearfix">
+    <?= $this->fetch('content') ?>
+</div>
+<footer>
+    <p>Group : SI1-12</p>
+    <p>Members: DUBAELE Rémi, LEAL Corentin, LIMMERMONT Florian, PLANCHE Logan</p>
+    <p>Options: DG</p>
+    <p>Github: https://github.com/CorentinLeal/WebArena</p>
+</footer>
 </body>
 </html>

@@ -19,7 +19,8 @@ class Player extends Entity
         'id' => false
     ];
 
-    protected function _setPassword($password){
+    protected function _setPassword($password)
+    {
         return (new DefaultPasswordHasher)->hash($password);
     }
 

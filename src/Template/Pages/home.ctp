@@ -40,6 +40,6 @@ $cakeDescription = 'CakePHP: the rapid development PHP framework';
     <?= $this->Html->css('base.css') ?>
 </head>
 <body class="home">
-    <?php echo $this->fetch('index') ?>
+<?php echo $this->fetch('index') ?>
 </body>
 </html>

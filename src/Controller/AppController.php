@@ -28,15 +28,6 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
-/*    public $components = array(
-        'Auth' => array(
-            'loginAction' => array(
-                'controller' => "players",
-                'action' => 'login'
-            )
-        )
-    );
-*/
     /**
      * Initialization hook method.
      *
