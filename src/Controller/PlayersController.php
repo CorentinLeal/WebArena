@@ -23,7 +23,7 @@ class PlayersController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        $this->Auth->allow('add');
+        $this->Auth->allow(['add', 'logout']);
     }
 
     public function index()
@@ -49,6 +49,21 @@ class PlayersController extends AppController
             $this->Flash->error(__("Impossible to add user."));
         }
         $this->set('player', $player);
+    }
+
+    public function login(){
+        if ($this->request->is('post')){
+            $player = $this->Auth->identify();
+            if ($player){
+                $this->Auth->setUser($player);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid email or password?'));
+        }
+    }
+
+    public function logout(){
+        return $this->redirect($this->Auth->logout());
     }
 
 }
