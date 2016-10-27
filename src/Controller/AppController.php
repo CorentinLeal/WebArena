@@ -28,6 +28,15 @@ use Cake\Event\Event;
 class AppController extends Controller
 {
 
+/*    public $components = array(
+        'Auth' => array(
+            'loginAction' => array(
+                'controller' => "players",
+                'action' => 'login'
+            )
+        )
+    );
+*/
     /**
      * Initialization hook method.
      *
@@ -51,6 +60,10 @@ class AppController extends Controller
             'logoutRedirect' => [
                 'controller' => "Arenas",
                 'action' => 'index'
+            ],
+            'loginAction' => [
+                'controller' => "players",
+                'action' => 'login'
             ]
         ]);
     }
