@@ -19,7 +19,7 @@ class ArenasController extends AppController
         $this->set('myname', "Corentin Leal");
 
         $this->loadModel('Fighters');
-        $var=$this->Fighters->getBestFighter();
+        $var = $this->Fighters->getBestFighter();
         $this->set('test', $var);
     }
 
