@@ -58,7 +58,7 @@ class PlayersController extends AppController
                 $this->Auth->setUser($player);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid email or password?'));
+            $this->Flash->error(__('Invalid email or password.'));
         }
     }
 
