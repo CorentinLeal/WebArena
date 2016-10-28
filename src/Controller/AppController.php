@@ -53,8 +53,17 @@ class AppController extends Controller
                 'action' => 'index'
             ],
             'loginAction' => [
-                'controller' => "players",
+                'controller' => "Players",
                 'action' => 'login'
+            ],
+            'authenticate' => [
+                'Form' => [
+                    'userModel' => 'Players',
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'password',
+                    ]
+                ]
             ]
         ]);
     }
