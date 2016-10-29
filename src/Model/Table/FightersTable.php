@@ -128,7 +128,7 @@ class FightersTable extends Table
          */
         if ($this->estLa($player,$vecteur) == 0){
             //On modifie les coordonees du Combattant en base puisqu'il s'est déplacé
-            $data = array('Fighter' => array('id' => $player['Fighter']['id'], 'coordinate_y' => $player['Fighter']['coordinate_y'] + $vecteur['y'], 'coordinate_x' => $player['Fighter']['coordinate_x'] + $vecteur['x']))
+            $data = array('Fighter' => array('id' => $player['Fighter']['id'], 'coordinate_y' => $player['Fighter']['coordinate_y'] + $vecteur['y'], 'coordinate_x' => $player['Fighter']['coordinate_x'] + $vecteur['x']));
             $this -> save($data);
 
         }else $event['name'] .= " mais se heurte à quelqu'un.";
