@@ -43,10 +43,10 @@ class PlayersController extends AppController
         if ($this->request->is('post')) {
             $player = $this->Players->patchEntity($player, $this->request->data);
             if ($this->Players->save($player)) {
-                $this->Flash->success(__("The player has been saved."));
+                $this->Flash->success(__("Joueur enregistré !"));
                 return $this->redirect(['controller' => 'Arenas', 'action' => 'index']);
             }
-            $this->Flash->error(__("Impossible to add user."));
+            $this->Flash->error(__("Impossible d'ajouter un utilisateur."));
         }
         $this->set('player', $player);
     }
@@ -59,7 +59,7 @@ class PlayersController extends AppController
                 $this->Auth->setUser($player);
                 return $this->redirect($this->Auth->redirectUrl());
             }
-            $this->Flash->error(__('Invalid email or password.'));
+            $this->Flash->error(__('Email ou mot de passe invalide'));
         }
     }
 
