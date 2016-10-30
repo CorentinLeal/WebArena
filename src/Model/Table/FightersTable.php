@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: corentin
@@ -8,48 +9,45 @@
 
 namespace App\Model\Table;
 
+use Cake\Core\Configure;
 use Cake\ORM\Table;
 
-class FightersTable extends Table
-{
+class FightersTable extends Table {
 
-    public function getBestFighter()
-    {
+    public function getBestFighter() {
         $test = $this->find('all')->order('level')->limit(1);
         return $test->toArray();
     }
 
-
     /*
- * Cette fonction retourne un Combattant en particulier. Elle prend l'id du Joueur concerné et le nom du Combattant qu'on attend
- */
-    public function getFighterByUserAndName($user_id, $name)
-    {
+     * Cette fonction retourne un Combattant en particulier. Elle prend l'id du Joueur concerné et le nom du Combattant qu'on attend
+     */
+
+    public function getFighterByUserAndName($user_id, $name) {
         return $this->find('first', array('conditions' => array('player_id' => $user_id, 'Fighter.name' => $name)));
     }
 
-
     /*
- * Cette fonction retourne la liste des Combattants d'un Joueur. Elle prend l'id du Joueur en paramètre
- */
-    public function getAllFightersByUser($user_id)
-    {
+     * Cette fonction retourne la liste des Combattants d'un Joueur. Elle prend l'id du Joueur en paramètre
+     */
+
+    public function getAllFightersByUser($user_id) {
         return $this->find('all', array('conditions' => array('player_id' => $user_id)));
     }
 
     /*
      * Cette fonction retourne un Combattant. Elle prend son nom en paramètre
      */
-    public function getFighterByName($name)
-    {
+
+    public function getFighterByName($name) {
         return $this->findByName($name);
     }
 
     /*
      * Cette fonction retourne seulement les noms (pas les autres attributs) des Combattants d'un Joueur. Elle prend l'id du Joueur en question
      */
-    public function getAllFightersNamesByUser($user_id)
-    {
+
+    public function getAllFightersNamesByUser($user_id) {
         $result = array();
         $listeFighter = $this->find('all', array('conditions' => array('player_id' => $user_id)));
 
@@ -59,48 +57,49 @@ class FightersTable extends Table
         return $result;
     }
 
-
     /*
      * Cette fonction crée un vecteur utilisé pour la gestion des déplacements du Combattant. Elle prend une direction en paramètres
      */
-    public function vecteur($direction)
-    {
+
+    public function vecteur($direction) {
         $vecteur = array('x' => 0, 'y' => 0);
 
         switch ($direction) {
             case "nord":
-                $vecteur['y']++;
+                $vecteur['y'] ++;
                 break;
             case "sud":
-                $vecteur['y']--;
+                $vecteur['y'] --;
                 break;
             case "est":
-                $vecteur['x']++;
+                $vecteur['x'] ++;
                 break;
             case "ouest":
-                $vecteur['x']--;
+                $vecteur['x'] --;
                 break;
         }
 
         return $vecteur;
     }
 
-    public function estLa($fighter, $vecteur)
-    {
+    public function estLa($fighter, $vecteur) {
         $player = $fighter;
         $target = array();
         $result = -1;
 
         if ((($player['Fighter']['coordinate_x'] + $vecteur['x']) >= 0) &&
-            (($player['Fighter']['coordinate_x'] + $vecteur['x']) < MAPLIMITX) &&
-            (($player['Fighter']['coordinate_y'] + $vecteur['y'] >= 0) &&
+                (($player['Fighter']['coordinate_x'] + $vecteur['x']) < MAPLIMITX) &&
+                (($player['Fighter']['coordinate_y'] + $vecteur['y'] >= 0) &&
                 (($player['Fighter']['coordinate_y'] + $vecteur['y']) < MAPLIMITY)
-            )
+                )
         ) {
             $target = $this->find('all', array('conditions' => array('coordinate_x' => ($player['Fighter']['coordinate_x'] + $vecteur['x']))));
-        }else $result = -2;
-        if(count($target) == 0) $result++;
-        else $result = $target[0];
+        } else
+            $result = -2;
+        if (count($target) == 0)
+            $result++;
+        else
+            $result = $target[0];
 
         return $result;
     }
@@ -110,8 +109,8 @@ class FightersTable extends Table
      * Paramètres: Combattant à déplacer et la direction dans laquelle il va.
      * Valeur de retour: Un Evenement déplacement avec nom et coordonnées
      */
-    public function seDeplace($fighter, $direction)
-    {
+
+    public function seDeplace($fighter, $direction) {
         $event = array('name' => '', 'coordinate_x' => 0, 'coordinate_y' => 0);
 
         $player = $fighter;
@@ -126,14 +125,42 @@ class FightersTable extends Table
         /*
          * On vérifie si un Combattant ne se trouve pas déjà sur la case cible
          */
-        if ($this->estLa($player,$vecteur) == 0){
+        if ($this->estLa($player, $vecteur) == 0) {
             //On modifie les coordonees du Combattant en base puisqu'il s'est déplacé
             $data = array('Fighter' => array('id' => $player['Fighter']['id'], 'coordinate_y' => $player['Fighter']['coordinate_y'] + $vecteur['y'], 'coordinate_x' => $player['Fighter']['coordinate_x'] + $vecteur['x']));
-            $this -> save($data);
-
-        }else $event['name'] .= " mais se heurte à quelqu'un.";
+            $this->save($data);
+        } else
+            $event['name'] .= " mais se heurte à quelqu'un.";
 
         return $event;
+    }
+
+    public function createFighter($playerId, $name) {
+
+        $MAPWIDTH = Configure::read('MAPWIDTH');
+        $MAPHEIGHT = Configure::read('MAPHEIGHT');
+
+
+        //Choix d'un couple (x,y) de coordonnÃ©e alÃ©atoire dans l'arÃ¨ne
+        $coord['coordinate_x'] = rand(0, $MAPWIDTH - 1);
+        $coord['coordinate_y'] = rand(0, $MAPHEIGHT - 1);
+
+
+        $fighter = $this->newEntity();
+        $fighter->player_id = $playerId;
+        $fighter->name = $name;
+        $fighter->coordinate_x = $coord['coordinate_x'];
+        $fighter->coordinate_y = $coord['coordinate_y'];
+        $fighter->level = 1;
+        $fighter->xp = 0;
+        $fighter->skill_sight = 2;
+        $fighter->skill_strength = 1;
+        $fighter->skill_health = 5;
+        $fighter->current_health = 5;
+
+
+
+        $this->save($fighter);
     }
 
 }
