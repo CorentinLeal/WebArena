@@ -35,7 +35,13 @@ class ArenasController extends AppController {
 
         if ($this->request->is('post')) {
             $name = $this->request->data('nom');
-            $create = $this->Fighters->createFighter($this->Auth->user('id'), $name);
+            $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
+
+            if ($this->Fighters->save($fighter)) {
+                $this->Flash->success(__("Combattant enregistré !"));
+                return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
+            }
+            $this->set('fighter', $fighter);
         }
     }
 

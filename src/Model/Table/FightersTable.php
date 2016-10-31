@@ -164,7 +164,7 @@ class FightersTable extends Table {
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
 
 
-        //Choix d'un couple (x,y) de coordonnÃ©e alÃ©atoire dans l'arÃ¨ne
+        //Choix d'un couple (x,y) de coordonnée aléatoire dans l'arène
         $coord['coordinate_x'] = rand(0, $MAPWIDTH - 1);
         $coord['coordinate_y'] = rand(0, $MAPHEIGHT - 1);
 
@@ -181,9 +181,7 @@ class FightersTable extends Table {
         $fighter->skill_health = 5;
         $fighter->current_health = 5;
 
-
-
-        $this->save($fighter);
+        return $fighter;
     }
 
 }
