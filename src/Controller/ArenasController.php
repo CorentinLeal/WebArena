@@ -34,14 +34,41 @@ class ArenasController extends AppController {
         $this->loadModel('Fighters');
 
         if ($this->request->is('post')) {
-            $name = $this->request->data('nom');
-            $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
 
-            if ($this->Fighters->save($fighter)) {
-                $this->Flash->success(__("Combattant enregistré !"));
-                return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
+                //Creer un nouveau combattant
+            if (array_key_exists('nom', $this->request->data)) {
+                $name = $this->request->data('nom');
+                $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
+
+                if ($this->Fighters->save($fighter)) {
+                    $this->Flash->success(__("Combattant enregistré !"));
+                    $this->set('fighter', $fighter);
+                }
+
+                if ($fighter) {
+                    $this->Flash->success(__("Combattant selectionné !"));
+                }
+                
+                //selectionner un combattant pour en afficher ses caractéristiques
+            } else if (array_key_exists('choix', $this->request->data)) {
+                $name = $this->request->data('choix');
+                          
+                $fighter = $this->Fighter->getFighterByName($name);             
+                
+                if ($fighter) {
+                    $this->Flash->success(__("Combattant selectionné !"));
+                    $this->set('fighter', $fighter);
+                }
             }
-            $this->set('fighter', $fighter);
+            
+            //delete un combattant
+            } else if (array_key_exists('Suprimer', $this->request->data)) {
+                $this->Fighter->kill($fighter);
+                if (!$fighter) {
+                    $this->Flash->success(__("Combattant supprimé !"));
+                    $this->set('fighter', null);
+                }
+                
         }
     }
 
