@@ -51,7 +51,8 @@ class ArenasController extends AppController {
                 
                 //selectionner un combattant pour en afficher ses caractéristiques
             } else if (array_key_exists('choix', $this->request->data)) {
-                $name = $this->request->data('nom');
+                $name = $this->request->data('choix');
+                          
                 $fighter = $this->Fighter->getFighterByName($name);             
                 
                 if ($fighter) {

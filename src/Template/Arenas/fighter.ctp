@@ -16,11 +16,10 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                         <div class="fighter form">
-                            <?= $this->Form->create('choix') ?>
+                            <?= $this->Form->create('FighterChoose') ?>
                             <fieldset>
                                 <legend><?php echo __('Choisissez un combattant à afficher.'); ?></legend>
-                                <?php echo $this->Form->input('nom'); 
-                                //pr($this->request->data('nom'))?>
+                                <?php echo $this->Form->input('choix', array('options' => $fighter)); ?>
                             </fieldset>
                             <?= $this->Form->button(__('Voir ce combattant')); ?>
                             <?= $this->Form->end() ?>
