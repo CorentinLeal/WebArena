@@ -14,13 +14,17 @@ use Cake\ORM\Table;
 
 class FightersTable extends Table {
 
+    /*
+     * TP1
+     */
     public function getBestFighter() {
         $test = $this->find('all')->order('level')->limit(1);
         return $test->toArray();
     }
 
     /*
-     * Cette fonction retourne un Combattant en particulier. Elle prend l'id du Joueur concerné et le nom du Combattant qu'on attend
+     * Cette fonction retourne un Combattant en particulier
+     * Paramètres: l'id du Joueur dont on veut le Combattant, ainsi que le nom de ce Combattant
      */
 
     public function getFighterByUserAndName($user_id, $name) {
@@ -28,7 +32,8 @@ class FightersTable extends Table {
     }
 
     /*
-     * Cette fonction retourne la liste des Combattants d'un Joueur. Elle prend l'id du Joueur en paramètre
+     * Cette fonction retourne une liste de tous les Combattants d'un Joueur.
+     * Paramètre: l'id du Joueur dont on veut les Combattants
      */
 
     public function getAllFightersByUser($user_id) {
@@ -36,7 +41,8 @@ class FightersTable extends Table {
     }
 
     /*
-     * Cette fonction retourne un Combattant. Elle prend son nom en paramètre
+     * Cette fonction retourne un Combattant
+     * Paramètre: le nom du Combattant dont on veut les attributs
      */
 
     public function getFighterByName($name) {
@@ -44,7 +50,8 @@ class FightersTable extends Table {
     }
 
     /*
-     * Cette fonction retourne seulement les noms (pas les autres attributs) des Combattants d'un Joueur. Elle prend l'id du Joueur en question
+     * Cette fonction retourne une liste de noms de tous les Combattants d'un Joueur.
+     * Paramètre: l'id du Joueur dont on veut les noms des Combattants
      */
 
     public function getAllFightersNamesByUser($user_id) {
@@ -58,7 +65,9 @@ class FightersTable extends Table {
     }
 
     /*
-     * Cette fonction crée un vecteur utilisé pour la gestion des déplacements du Combattant. Elle prend une direction en paramètres
+     * Cette fonction crée un vecteur utilisé pour la gestion des déplacements du Combattant.
+     * Paramètre: une direction (Nord, Sud ,Est, Ouest)
+     * Valeur de retour: un vecteur indispensable pour la fonction seDeplace()
      */
 
     public function vecteur($direction) {
@@ -82,6 +91,14 @@ class FightersTable extends Table {
         return $vecteur;
     }
 
+
+    /*
+     * Cette méthode teste la case sur laquelle va se déplacer un Combattant pour voir si un autre Combattant ne s'y trouve pas déjà.
+     * Paramètres: Combattant qui va se déplacer, vecteur dans
+     * Valeurs de retour: -1 si la case est en dehors du terrain
+     *                     0 si la case est vide (et donc accessible)
+     *                     Si la case est occupée, retourne le Combattant qui est dessus
+     */
     public function estLa($fighter, $vecteur) {
         $player = $fighter;
         $target = array();
@@ -135,6 +152,12 @@ class FightersTable extends Table {
         return $event;
     }
 
+
+    /*
+     * La méthode de création de Combattant.
+     * Paramètres: l'id du Joueur à qui appartiendra le nouveau Combattant, le nom du nouveau Combattant
+     * Sauvegarde en base tous les attributs du nouveau Combattant. (Induit un nouveau tuple dans la table Fighter).
+     */
     public function createFighter($playerId, $name) {
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
