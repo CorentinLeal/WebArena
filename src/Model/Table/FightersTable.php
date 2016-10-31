@@ -28,7 +28,9 @@ class FightersTable extends Table {
      */
 
     public function getFighterByUserAndName($user_id, $name) {
-        return $this->find('first', array('conditions' => array('player_id' => $user_id, 'Fighter.name' => $name)));
+        
+        $fighter = $this->find('all',array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+        return $fighter;
     }
 
     /*
@@ -213,6 +215,12 @@ class FightersTable extends Table {
                 $this->save($datas);
             }
         }
+    }
+    
+    
+     public function kill($fighter)
+    {
+        $this->delete($fighter['id']);
     }
 
 }

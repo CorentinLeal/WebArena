@@ -19,7 +19,7 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                             <?= $this->Form->create('FighterChoose') ?>
                             <fieldset>
                                 <legend><?php echo __('Choisissez un combattant à afficher.'); ?></legend>
-                                <?php echo $this->Form->input('choix', array('options' => $fighter)); ?>
+                                <?php echo $this->Form->input('choix'); ?>
                             </fieldset>
                             <?= $this->Form->button(__('Voir ce combattant')); ?>
                             <?= $this->Form->end() ?>
@@ -48,35 +48,35 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                             <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
                                 <h1>
                                     <?php
-                                    echo ' Nom du combattant : ' . $fighter['name'];
+                                    echo ' Nom du combattant : ' . $fighter[0]['name'];
                                     ?>
                                 </h1>
 
                                 <h2>
                                     <?php
-                                    echo ' Level : ' . $fighter['level'];
+                                    echo ' Level : ' . $fighter[0]['level'];
                                     ?>
                                 </h2>
                                 <?php
                                 echo '
-                                     <div class="col-xs-2 col-md-2 col-lg-2">HP (' . $fighter['current_health'] . '/' . $fighter['skill_health'] . ')
+                                     <div class="col-xs-2 col-md-2 col-lg-2">HP (' . $fighter[0]['Fighter']['current_health'] . '/' . $fighter[0]['skill_health'] . ')
                                      </div>
                                      
-                                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="' . $fighter['current_health'] . '" aria-valuemin="0" aria-valuemax="' . $fighter['skill_health'] . '" style="width: ' . ((($fighter['current_health']) / ($fighter['skill_health'])) * 100) . '%">
+                                      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="' . $fighter[0]['current_health'] . '" aria-valuemin="0" aria-valuemax="' . $fighter[0]['skill_health'] . '" style="width: ' . ((($fighter[0]['current_health']) / ($fighter[0]['skill_health'])) * 100) . '%">
                                      
                                      </div>
                                         </div>
-                                        <div class="col-xs-2 col-md-2 col-lg-2">XP (' . $fighter['xp'] . '/4)</div>
+                                        <div class="col-xs-2 col-md-2 col-lg-2">XP (' . $fighter[0]['xp'] . '/4)</div>
                                         </div>
                                         </div>
                                           force : 
-                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-gavel fa-3x" id="gavelIcon">' . $fighter['skill_strength'] . '</div> 
+                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-gavel fa-3x" id="gavelIcon">' . $fighter[0]['skill_strength'] . '</div> 
                                           vue :
-                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-eye fa-3x" id="eyeIcon">' . $fighter['skill_sight'] . '</div> 
+                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-eye fa-3x" id="eyeIcon">' . $fighter[0]['skill_sight'] . '</div> 
                                           coord x :
-                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-arrows-h fa-3x" id="arrowIcon">' . $fighter['coordinate_x'] . '</div> 
+                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-arrows-h fa-3x" id="arrowIcon">' . $fighter[0]['coordinate_x'] . '</div> 
                                           coord y :
-                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-arrows-v fa-3x" id="arrowIcon">' . $fighter['coordinate_y'] . '</div>';
+                                      <div class="col-xs-3 col-md-3 col-lg-3 fa fa-arrows-v fa-3x" id="arrowIcon">' . $fighter[0]['coordinate_y'] . '</div>';
                                 ?>
                             </div>
                         </div>
@@ -85,13 +85,14 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                         <div class="col-xs-12 col-md-12 col-lg-12">
                             <?php
                             echo $this->Form->create('FighterKill');
-                            echo $this->Form->input('Supprimer', array('default' => $fighter["name"], 'type' => 'hidden'));
-                            echo $this->Form->button(__('Supprimer')); ?>
-                            <?= $this->Form->end() ?>
-                            </div>
+                            echo $this->Form->input('supprimer', array('default' => $fighter[0]["name"]));
+                            echo $this->Form->button(__('Supprimer'));
+                            ?>
+    <?= $this->Form->end() ?>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-<?php } ?>
+    <?php } ?>
