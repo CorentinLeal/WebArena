@@ -16,7 +16,7 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 
                         <div class="fighter form">
-                            <?= $this->Form->create('FighterChoose') ?>
+                            <?= $this->Form->create('choix') ?>
                             <fieldset>
                                 <legend><?php echo __('Choisissez un combattant à afficher.'); ?></legend>
                                 <?php echo $this->Form->input('nom'); 
