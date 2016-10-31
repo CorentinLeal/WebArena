@@ -13,10 +13,10 @@ use Cake\Core\Configure;
 use Cake\ORM\Table;
 
 class FightersTable extends Table {
-
     /*
      * TP1
      */
+
     public function getBestFighter() {
         $test = $this->find('all')->order('level')->limit(1);
         return $test->toArray();
@@ -91,7 +91,6 @@ class FightersTable extends Table {
         return $vecteur;
     }
 
-
     /*
      * Cette méthode teste la case sur laquelle va se déplacer un Combattant pour voir si un autre Combattant ne s'y trouve pas déjà.
      * Paramètres: Combattant qui va se déplacer, vecteur dans
@@ -99,6 +98,7 @@ class FightersTable extends Table {
      *                     0 si la case est vide (et donc accessible)
      *                     Si la case est occupée, retourne le Combattant qui est dessus
      */
+
     public function estLa($fighter, $vecteur) {
         $player = $fighter;
         $target = array();
@@ -152,12 +152,12 @@ class FightersTable extends Table {
         return $event;
     }
 
-
     /*
      * La méthode de création de Combattant.
      * Paramètres: l'id du Joueur à qui appartiendra le nouveau Combattant, le nom du nouveau Combattant
      * Sauvegarde en base tous les attributs du nouveau Combattant. (Induit un nouveau tuple dans la table Fighter).
      */
+
     public function createFighter($playerId, $name) {
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
@@ -182,6 +182,37 @@ class FightersTable extends Table {
         $fighter->current_health = 5;
 
         return $fighter;
+    }
+
+    /*
+     * Méthode action d'attaque d'un combattant
+     * Reçoit un Fighter en array et une direction en string
+     * Retourne un Event en array avec des valeurs nom, coordinate_x et coordinate_y initialisées
+     */
+
+    public function attaque($fighter, $direction) {
+
+        //Détermination du vecteur d'attaque à partir de la direction choisi par le joueur
+        $vector = $this->vecteur($direction);
+
+        //Vérification de la présence d'un Fighter sur la case cible
+        $defenser = $this->estLa($fighter, $vector);
+
+        //Si un Fighter est trouvé comme "Attaqué"
+        if (is_array($defenser)) {
+            $result = true;
+
+            //Jet de tentative d'attaque
+            $rand = rand(1, 20);
+
+            //Si le jet d'attaque est supérieur à 10 plus la différence de niveau des deux joueurs, l'attaque réussie
+            if ($rand > (10 + $defenser['Fighter']['level'] - $fighter['Fighter']['level'])) {
+                //Enregistrement de la blessure en DB
+                $defenser['Fighter']['current_health'] -= $fighter['Fighter']['skill_strength'];
+                $datas = array('Fighter' => array('id' => $defenser['Fighter']['id'], 'current_health' => $defenser['Fighter']['current_health']));
+                $this->save($datas);
+            }
+        }
     }
 
 }
