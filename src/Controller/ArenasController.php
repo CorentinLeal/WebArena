@@ -46,7 +46,7 @@ class ArenasController extends AppController {
                 }
 
                 if ($fighter) {
-                    $this->Flash->success(__("Combattant selectionné !"));
+                     return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
                 }
                 
                 //selectionner un combattant pour en afficher ses caractéristiques
@@ -64,8 +64,8 @@ class ArenasController extends AppController {
             
             //delete un combattant
             } else if (array_key_exists('supprimer', $this->request->data)) {
-                $fighter = $this->Fighter->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['supprimer']);
-                $this->Fighter->kill($fighter);
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['supprimer']);
+                $this->Fighters->kill($fighter);
                 $this->Flash->success(__("Combattant supprimé !"));
                 if (!$fighter) {
                     $this->Flash->success(__("Combattant supprimé !"));

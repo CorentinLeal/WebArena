@@ -28,8 +28,8 @@ class FightersTable extends Table {
      */
 
     public function getFighterByUserAndName($user_id, $name) {
-        
-        $fighter = $this->find('all',array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+
+        $fighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
         return $fighter;
     }
 
@@ -39,7 +39,7 @@ class FightersTable extends Table {
      */
 
     public function getAllFightersByUser($user_id) {
-        return $this->find('all', array('conditions' => array('player_id' => $user_id)));
+        return $this->find('all', array('conditions' => array('player_id' => $user_id)))->toArray();
     }
 
     /*
@@ -48,7 +48,7 @@ class FightersTable extends Table {
      */
 
     public function getFighterByName($name) {
-        return $this->findByName($name);
+        return $this->findByName($name)->toArray();
     }
 
     /*
@@ -182,7 +182,9 @@ class FightersTable extends Table {
         $fighter->skill_strength = 1;
         $fighter->skill_health = 5;
         $fighter->current_health = 5;
-
+        
+        $result = $fighter->toArray();
+        
         return $fighter;
     }
 
@@ -216,10 +218,8 @@ class FightersTable extends Table {
             }
         }
     }
-    
-    
-     public function kill($fighter)
-    {
+
+    public function kill($fighter) {
         $this->delete($fighter['id']);
     }
 
