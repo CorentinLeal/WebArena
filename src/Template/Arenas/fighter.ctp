@@ -78,48 +78,44 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                                           coord y :
                                       <div class="col-xs-3 col-md-3 col-lg-3 fa fa-arrows-v fa-3x" id="arrowIcon">' . $fighter->coordinate_y . '</div>';
                                 ?>
+
+
+                                <div class="row top-buffer">
+                                    <div class="col-xs-12 col-md-12 col-lg-12">
+
+                                        <?php
+                                        if ($canLevelUp) {
+
+
+                                            echo $this->Form->create('FighterLevelUpStrength');
+                                            echo $this->Form->input('FighterLevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
+                                            echo $this->Form->button(__('Augmenter Force'));
+                                            $this->Form->end();
+
+                                            echo $this->Form->create('FighterLevelUpSight');
+                                            echo $this->Form->input('FighterLevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
+                                            echo $this->Form->button(__('Augmenter Vision'));
+
+                                            $this->Form->end();
+
+                                            echo $this->Form->create('FighterLevelUpHealth');
+                                            echo $this->Form->input('FighterLevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
+                                            echo $this->Form->button(__('Augmenter Santé'));
+                                            $this->Form->end();
+                                        }
+
+
+
+                                        echo $this->Form->create('FighterKill');
+                                        echo $this->Form->input('supprimer', array('default' => $fighter->name, 'type' => 'hidden'));
+                                        echo $this->Form->button(__('Supprimer'));
+                                        ?>
+                                        <?= $this->Form->end()
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-
-
-
-                    <div class="row top-buffer">
-                        <div class="col-xs-12 col-md-12 col-lg-12">
-
-                            <?php
-                            if ($canLevelUp) {
-
-
-                                echo $this->Form->create('FighterLevelUpStrength');
-                                echo $this->Form->input('FighterLevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
-                                echo $this->Form->button(__('Augmenter Force'));
-                                $this->Form->end();
-
-                                echo $this->Form->create('FighterLevelUpSight');
-                                echo $this->Form->input('FighterLevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
-                                echo $this->Form->button(__('Augmenter Vision'));
-
-                                $this->Form->end();
-
-                                echo $this->Form->create('FighterLevelUpHealth');
-                                echo $this->Form->input('FighterLevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
-                                echo $this->Form->button(__('Augmenter Santé'));
-                                $this->Form->end();
-                            }
-
-
-
-                            echo $this->Form->create('FighterKill');
-                            echo $this->Form->input('supprimer', array('default' => $fighter->name, 'type' => 'hidden'));
-                            echo $this->Form->button(__('Supprimer'));
-                            ?>
-                            <?= $this->Form->end()
-                            ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <?php
-    }?>
+                    <?php
+                }?>
