@@ -110,14 +110,18 @@ class FightersTable extends Table {
         $player = $fighter;
         $target = array();
         $result = -1;
+        
+        
+        $MAPWIDTH = Configure::read('MAPWIDTH');
+        $MAPHEIGHT = Configure::read('MAPHEIGHT');
 
-        if ((($player['Fighter']['coordinate_x'] + $vecteur['x']) >= 0) &&
-                (($player['Fighter']['coordinate_x'] + $vecteur['x']) < MAPLIMITX) &&
-                (($player['Fighter']['coordinate_y'] + $vecteur['y'] >= 0) &&
-                (($player['Fighter']['coordinate_y'] + $vecteur['y']) < MAPLIMITY)
+        if ((($player->coordinate_x + $vecteur['x']) >= 0) &&
+                (($player->coordinate_x + $vecteur['x']) < $MAPWIDTH) &&
+                (($player->coordinate_y + $vecteur['y'] >= 0) &&
+                (($player->coordinate_y + $vecteur['y']) < $MAPHEIGHT)
                 )
         ) {
-            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($player['Fighter']['coordinate_x'] + $vecteur['x']))));
+            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($player->coordinate_x + $vecteur['x']))));
         } else
             $result = -2;
         if (count($target) == 0)
@@ -139,20 +143,19 @@ class FightersTable extends Table {
 
         $player = $fighter;
 
-        $event['name'] .= $player['Fighter']['name'] . " se déplace";
+        $event['name'] .= $player->name . " se déplace";
 
         $vecteur = $this->vecteur($direction);
 
-        $event['name'] .= $player['Fighter']['coordinate_x'] + $vecteur['x'];
-        $event['name'] .= $player['Fighter']['coordinate_y'] + $vecteur['y'];
+        $event['name'] .= $player->coordinate_x + $vecteur['x'];
+        $event['name'] .= $player->coordinate_y + $vecteur['y'];
 
         /*
          * On vérifie si un Combattant ne se trouve pas déjà sur la case cible
          */
         if ($this->estLa($player, $vecteur) == 0) {
-            //On modifie les coordonees du Combattant en base puisqu'il s'est déplacé
-            $data = array('Fighter' => array('id' => $player['Fighter']['id'], 'coordinate_y' => $player['Fighter']['coordinate_y'] + $vecteur['y'], 'coordinate_x' => $player['Fighter']['coordinate_x'] + $vecteur['x']));
-            $this->save($data);
+            
+            $this->save($player);
         } else
             $event['name'] .= " mais se heurte à quelqu'un.";
 
@@ -215,11 +218,12 @@ class FightersTable extends Table {
             $rand = rand(1, 20);
 
             //Si le jet d'attaque est supérieur à 10 plus la différence de niveau des deux joueurs, l'attaque réussie
-            if ($rand > (10 + $defenser['Fighter']['level'] - $fighter['Fighter']['level'])) {
+            if ($rand > (10 + $defenser['Fighter']['level'] - $fighter->level)) {
                 //Enregistrement de la blessure en DB
-                $defenser['Fighter']['current_health'] -= $fighter['Fighter']['skill_strength'];
-                $datas = array('Fighter' => array('id' => $defenser['Fighter']['id'], 'current_health' => $defenser['Fighter']['current_health']));
-                $this->save($datas);
+                $defenser['Fighter']['current_health'] -= $fighter->skill_strength;
+                $fighter->id = $defenser['Fighter']['id'];
+                $fighter->current_health = $defenser['Fighter']['current_health'];
+                $this->save($fighter);
             }
         }
     }
