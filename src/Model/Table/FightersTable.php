@@ -30,6 +30,7 @@ class FightersTable extends Table {
     public function getFighterByUserAndName($user_id, $name) {
 
         $fighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+        
         return $fighter;
     }
 
@@ -218,9 +219,13 @@ class FightersTable extends Table {
             }
         }
     }
+    
 
     public function kill($fighter) {
-        $this->delete($fighter['id']);
+        
+        $result = $this->delete($fighter);
+        
+        return $result;
     }
 
 }

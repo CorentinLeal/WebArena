@@ -35,7 +35,7 @@ class ArenasController extends AppController {
 
         if ($this->request->is('post')) {
 
-                //Creer un nouveau combattant
+            //Creer un nouveau combattant
             if (array_key_exists('nom', $this->request->data)) {
                 $name = $this->request->data('nom');
                 $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
@@ -46,32 +46,40 @@ class ArenasController extends AppController {
                 }
 
                 if ($fighter) {
-                     return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
+                    return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
                 }
-                
+
                 //selectionner un combattant pour en afficher ses caractéristiques
             } else if (array_key_exists('choix', $this->request->data)) {
                 $name = $this->request->data('choix');
                 
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);    
+                $fighter = $this->Fighters->newEntity();
+                $datafighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
+                $fighter = $this->Fighters->patchEntity($fighter, $datafighter);
                 $this->set('fighter', $fighter);
-                
+
                 if ($fighter) {
                     $this->Flash->success(__("Combattant selectionné !"));
                     $this->set('fighter', $fighter);
                 }
-            }
-            
-            //delete un combattant
+
+                //delete un combattant
             } else if (array_key_exists('supprimer', $this->request->data)) {
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['supprimer']);
-                $this->Fighters->kill($fighter);
-                $this->Flash->success(__("Combattant supprimé !"));
+                $data = $this->request->data['supprimer'];
+                
+                $fighter = $this->Fighters->newEntity();
+                $datafighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $data);
+                $fighter = $this->Fighters->patchEntity($fighter, $datafighter);
+
+                $fighter = $this->Fighters->kill($fighter);
+
+                pr($fighter);
+
                 if (!$fighter) {
                     $this->Flash->success(__("Combattant supprimé !"));
                     $this->set('fighter', null);
                 }
-                
+            }
         }
     }
 

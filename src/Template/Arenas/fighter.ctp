@@ -85,10 +85,10 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                         <div class="col-xs-12 col-md-12 col-lg-12">
                             <?php
                             echo $this->Form->create('FighterKill');
-                            echo $this->Form->input('supprimer', array('default' => $fighter[0]["name"]));
+                            echo $this->Form->input('supprimer', array('default' => $fighter[0]["name"], 'type' => 'hidden'));
                             echo $this->Form->button(__('Supprimer'));
                             ?>
-    <?= $this->Form->end() ?>
+                            <?= $this->Form->end() ?>
                         </div>
                     </div>
                 </div>
