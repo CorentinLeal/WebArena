@@ -44,102 +44,108 @@ class ArenasController extends AppController {
                     $this->Flash->success(__("Combattant enregistré !"));
                     $this->set('fighter', $fighter);
                 } else {
-                    $this->Flash->success(__("Combattant pas !"));
-                }
-
-                if ($fighter) {
-                    //return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
-                }
-
-                //selectionner un combattant pour en afficher ses caractéristiques
-            } else if (array_key_exists('choix', $this->request->data)) {
-                $name = $this->request->data('choix');
-
-
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
-
-                $this->set('fighter', $fighter);
-
-                if ($fighter) {
-                    $this->Flash->success(__("Combattant selectionné !"));
-                    $this->set('fighter', $fighter);
+                    $this->Flash->success(__("Le combattant n'a pas pu etre créé!"));
                 }
 
                 //détermination de la possibilité de passer un niveau
                 if ($this->Fighters->canLevelUp($fighter)) {
                     $this->set('canLevelUp', true);
                     $this->set('fighter', $fighter);
-                } else
+                } else {
                     $this->set('canLevelUp', false);
+                }
+
                 $this->set('fighter', $fighter);
             }
 
-            //Passage de niveau du Fighter séléctionné
-            else if (array_key_exists('FighterLevelUpHealth', $this->request->data)) {
-                //Récupération du Fighter à partir de son nom et de son Player
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpHealth']);
-
-                // Méthode de passage de niveau avec le skill renseigné
-                $fighter = $this->Fighters->levelUp($fighter, 'health');
+            //selectionner un combattant pour en afficher ses caractéristiques
+        } else if (array_key_exists('choix', $this->request->data)) {
+            $name = $this->request->data('choix');
 
 
-                if ($this->Fighters->save($fighter)) {
-                    $this->Flash->success(__("Combattant enregistré !"));
-                    $this->set('fighter', $fighter);
-                }
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
 
-                //Détermination de la possibilité de passer un niveau
-                if ($this->Fighters->canLevelUp($fighter)) {
-                    $this->set('canLevelUp', true);
-                    $this->set('fighter', $fighter);
-                } else
-                    $this->set('canLevelUp', false);
+            $this->set('fighter', $fighter);
+
+            if ($fighter) {
+                $this->Flash->success(__("Combattant selectionné !"));
+                $this->set('fighter', $fighter);
+            }
+
+            //détermination de la possibilité de passer un niveau
+            if ($this->Fighters->canLevelUp($fighter)) {
+                $this->set('canLevelUp', true);
+                $this->set('fighter', $fighter);
+            } else
+                $this->set('canLevelUp', false);
+            $this->set('fighter', $fighter);
+        }
+
+        //Passage de niveau du Fighter séléctionné
+        else if (array_key_exists('FighterLevelUpHealth', $this->request->data)) {
+            //Récupération du Fighter à partir de son nom et de son Player
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpHealth']);
+
+            // Méthode de passage de niveau avec le skill renseigné
+            $fighter = $this->Fighters->levelUp($fighter, 'health');
 
 
-                //augmentation du skill vision
-            } else if (array_key_exists('FighterLevelUpSight', $this->request->data)) {
-                //Récupération du Fighter à partir de son nom et de son User
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpSight']);
+            if ($this->Fighters->save($fighter)) {
+                $this->Flash->success(__("Combattant enregistré !"));
+                $this->set('fighter', $fighter);
+            }
 
-                // Méthode de passage de niveau avec le skill renseigné
-                $fighter = $this->Fighters->levelUp($fighter, 'sight');
-                $this->set('raw', $fighter);
+            //Détermination de la possibilité de passer un niveau
+            if ($this->Fighters->canLevelUp($fighter)) {
+                $this->set('canLevelUp', true);
+                $this->set('fighter', $fighter);
+            } else
+                $this->set('canLevelUp', false);
 
-                //Détermination de la possibilité de passer un niveau
-                if ($this->Fighters->canLevelUp($fighter)) {
-                    $this->set('canLevelUp', true);
-                    $this->set('fighter', $fighter);
-                } else
-                    $this->set('canLevelUp', false);
 
-                //augmentation du skill force
-            } else if (array_key_exists('FighterLevelUpStrength', $this->request->data)) {
-                //Récupération du Fighter à partir de son nom et de son User
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpStrength']);
+            //augmentation du skill vision
+        } else if (array_key_exists('FighterLevelUpSight', $this->request->data)) {
+            //Récupération du Fighter à partir de son nom et de son User
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpSight']);
 
-                // Méthode de passage de niveau avec le skill renseigné
-                $fighter = $this->Fighters->levelUp($fighter, 'strength');
-                $this->set('raw', $fighter);
+            // Méthode de passage de niveau avec le skill renseigné
+            $fighter = $this->Fighters->levelUp($fighter, 'sight');
+            $this->set('raw', $fighter);
 
-                //Détermination de la possibilité de passer un niveau
-                if ($this->Fighters->canLevelUp($fighter)) {
-                    $this->set('canLevelUp', true);
-                    $this->set('fighter', $fighter);
-                } else
-                    $this->set('canLevelUp', false);
+            //Détermination de la possibilité de passer un niveau
+            if ($this->Fighters->canLevelUp($fighter)) {
+                $this->set('canLevelUp', true);
+                $this->set('fighter', $fighter);
+            } else
+                $this->set('canLevelUp', false);
 
-                //delete un combattant
-            }else if (array_key_exists('supprimer', $this->request->data)) {
-                $data = $this->request->data['supprimer'];
+            //augmentation du skill force
+        } else if (array_key_exists('FighterLevelUpStrength', $this->request->data)) {
+            //Récupération du Fighter à partir de son nom et de son User
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpStrength']);
 
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $data);
+            // Méthode de passage de niveau avec le skill renseigné
+            $fighter = $this->Fighters->levelUp($fighter, 'strength');
+            $this->set('raw', $fighter);
 
-                $fighter = $this->Fighters->kill($fighter);
+            //Détermination de la possibilité de passer un niveau
+            if ($this->Fighters->canLevelUp($fighter)) {
+                $this->set('canLevelUp', true);
+                $this->set('fighter', $fighter);
+            } else
+                $this->set('canLevelUp', false);
 
-                if (!$fighter) {
-                    $this->Flash->success(__("Combattant supprimé !"));
-                    $this->set('fighter', null);
-                }
+            //delete un combattant
+        }else if (array_key_exists('supprimer', $this->request->data)) {
+            $data = $this->request->data['supprimer'];
+
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $data);
+
+            $fighter = $this->Fighters->kill($fighter);
+
+            if (!$fighter) {
+                $this->Flash->success(__("Combattant supprimé !"));
+                $this->set('fighter', null);
             }
         }
     }
