@@ -8,5 +8,6 @@
 
 return [
     'MAPWIDTH' => 15,
-    'MAPHEIGHT' => 10
+    'MAPHEIGHT' => 10,
+    'XPUP'=>4
 ];

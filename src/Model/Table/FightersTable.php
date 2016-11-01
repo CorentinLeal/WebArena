@@ -37,11 +37,11 @@ class FightersTable extends Table {
         $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
         $fighter->level = $datafighter[0]['level'];
         $fighter->xp = $datafighter[0]['xp'];
-        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_sight = $datafighter[0]['skill_sight'];
         $fighter->skill_strength = $datafighter[0]['skill_strength'];
         $fighter->skill_health = $datafighter[0]['skill_health'];
         $fighter->current_health = $datafighter[0]['current_health'];
-        
+
         return $fighter;
     }
 
@@ -59,13 +59,13 @@ class FightersTable extends Table {
         $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
         $fighter->level = $datafighter[0]['level'];
         $fighter->xp = $datafighter[0]['xp'];
-        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_sight = $datafighter[0]['skill_sight'];
         $fighter->skill_strength = $datafighter[0]['skill_strength'];
         $fighter->skill_health = $datafighter[0]['skill_health'];
         $fighter->current_health = $datafighter[0]['current_health'];
-        
+
         return $fighter;
-        }
+    }
 
     /*
      * Cette fonction retourne un Combattant
@@ -81,13 +81,12 @@ class FightersTable extends Table {
         $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
         $fighter->level = $datafighter[0]['level'];
         $fighter->xp = $datafighter[0]['xp'];
-        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_sight = $datafighter[0]['skill_sight'];
         $fighter->skill_strength = $datafighter[0]['skill_strength'];
         $fighter->skill_health = $datafighter[0]['skill_health'];
         $fighter->current_health = $datafighter[0]['current_health'];
-        
+
         return $fighter;
-        
     }
 
     /*
@@ -211,10 +210,10 @@ class FightersTable extends Table {
 
 
         $fighter = $this->newEntity();
-        
+
         $createFighter = array('name' => $name, 'level' => 1, 'xp' => 0, 'coordinate_x' => $coord['coordinate_x'], 'coordinate_y' => $coord['coordinate_y'], 'skill_sight' => 2, 'skill_strength' => 1, 'skill_health' => 5, 'current_health' => 5, 'player_id' => $playerId);
         $fighter = $this->patchEntity($fighter, $createFighter);
-        
+
         return $fighter;
     }
 
@@ -248,13 +247,58 @@ class FightersTable extends Table {
             }
         }
     }
-    
 
     public function kill($fighter) {
-        
+
         $result = $this->delete($fighter);
-        
+
         return $result;
+    }
+
+    /*
+     * Méthode de vérification si un combattant peu monter de niveau
+     * Reçoit un combattant et retourne un booléen
+     */
+
+    public function canLevelUp($fighter) {
+
+        $XPUP = Configure::read('XPUP');
+        $result = false;
+
+        if ($fighter->xp >= $XPUP)
+            $result = true;
+
+        return $result;
+    }
+
+    /*
+     * Méthode de passage de niveau d'un combattant
+     * Reçoit un combattant et une stat à  améliorer et retourne le Fighter modifié
+     */
+
+    public function levelUp($fighter, $stat) {
+
+        pr($stat);
+        $XPUP = Configure::read('XPUP');
+
+        //Si le Fighter à XPUP d'xp au moins
+        if ($fighter->xp >= $XPUP) {
+
+            //Retrait de XPUP d'xp, incrément du level, amélioration d'une stat et remise au max des HP
+            $fighter->xp -= $XPUP;
+            $fighter->level ++;
+
+            if ($stat = 'health') {
+                $fighter->skill_health ++;
+            } else if ($stat = 'sight') {
+                $fighter->skill_sight ++;
+            } else if ($stat = 'strenght')
+                $fighter->skill_strenght ++;
+            }
+            
+            $fighter->current_health = $fighter->skill_health;
+
+        return $fighter;
     }
 
 }
