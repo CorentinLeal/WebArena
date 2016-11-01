@@ -29,7 +29,18 @@ class FightersTable extends Table {
 
     public function getFighterByUserAndName($user_id, $name) {
 
-        $fighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+        $fighter = $this->newEntity();
+        $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+        $fighter->player_id = $datafighter[0]['player_id'];
+        $fighter->name = $datafighter[0]['name'];
+        $fighter->coordinate_x = $datafighter[0]['coordinate_x'];
+        $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
+        $fighter->level = $datafighter[0]['level'];
+        $fighter->xp = $datafighter[0]['xp'];
+        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_strength = $datafighter[0]['skill_strength'];
+        $fighter->skill_health = $datafighter[0]['skill_health'];
+        $fighter->current_health = $datafighter[0]['current_health'];
         
         return $fighter;
     }
@@ -40,8 +51,21 @@ class FightersTable extends Table {
      */
 
     public function getAllFightersByUser($user_id) {
-        return $this->find('all', array('conditions' => array('player_id' => $user_id)))->toArray();
-    }
+        $fighter = $this->newEntity();
+        $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id)))->toArray();
+        $fighter->player_id = $datafighter[0]['player_id'];
+        $fighter->name = $datafighter[0]['name'];
+        $fighter->coordinate_x = $datafighter[0]['coordinate_x'];
+        $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
+        $fighter->level = $datafighter[0]['level'];
+        $fighter->xp = $datafighter[0]['xp'];
+        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_strength = $datafighter[0]['skill_strength'];
+        $fighter->skill_health = $datafighter[0]['skill_health'];
+        $fighter->current_health = $datafighter[0]['current_health'];
+        
+        return $fighter;
+        }
 
     /*
      * Cette fonction retourne un Combattant
@@ -49,7 +73,21 @@ class FightersTable extends Table {
      */
 
     public function getFighterByName($name) {
-        return $this->findByName($name)->toArray();
+        $fighter = $this->newEntity();
+        $datafighter = $this->findByName($name)->toArray();
+        $fighter->player_id = $datafighter[0]['player_id'];
+        $fighter->name = $datafighter[0]['name'];
+        $fighter->coordinate_x = $datafighter[0]['coordinate_x'];
+        $fighter->coordinate_y = $datafighter[0]['coordinate_y'];
+        $fighter->level = $datafighter[0]['level'];
+        $fighter->xp = $datafighter[0]['xp'];
+        $fighter->skill_sight =$datafighter[0]['skill_sight'];
+        $fighter->skill_strength = $datafighter[0]['skill_strength'];
+        $fighter->skill_health = $datafighter[0]['skill_health'];
+        $fighter->current_health = $datafighter[0]['current_health'];
+        
+        return $fighter;
+        
     }
 
     /*
@@ -173,18 +211,9 @@ class FightersTable extends Table {
 
 
         $fighter = $this->newEntity();
-        $fighter->player_id = $playerId;
-        $fighter->name = $name;
-        $fighter->coordinate_x = $coord['coordinate_x'];
-        $fighter->coordinate_y = $coord['coordinate_y'];
-        $fighter->level = 1;
-        $fighter->xp = 0;
-        $fighter->skill_sight = 2;
-        $fighter->skill_strength = 1;
-        $fighter->skill_health = 5;
-        $fighter->current_health = 5;
         
-        $result = $fighter->toArray();
+        $createFighter = array('name' => $name, 'level' => 1, 'xp' => 0, 'coordinate_x' => $coord['coordinate_x'], 'coordinate_y' => $coord['coordinate_y'], 'skill_sight' => 2, 'skill_strength' => 1, 'skill_health' => 5, 'current_health' => 5, 'player_id' => $playerId);
+        $fighter = $this->patchEntity($fighter, $createFighter);
         
         return $fighter;
     }

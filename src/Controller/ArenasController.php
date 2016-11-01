@@ -39,23 +39,24 @@ class ArenasController extends AppController {
             if (array_key_exists('nom', $this->request->data)) {
                 $name = $this->request->data('nom');
                 $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
-
+                
                 if ($this->Fighters->save($fighter)) {
                     $this->Flash->success(__("Combattant enregistré !"));
                     $this->set('fighter', $fighter);
                 }
+                else {$this->Flash->success(__("Combattant pas !"));}
 
                 if ($fighter) {
-                    return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
+                    //return $this->redirect(['controller' => 'Arenas', 'action' => 'fighter']);
                 }
 
                 //selectionner un combattant pour en afficher ses caractéristiques
             } else if (array_key_exists('choix', $this->request->data)) {
                 $name = $this->request->data('choix');
                 
-                $fighter = $this->Fighters->newEntity();
-                $datafighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
-                $fighter = $this->Fighters->patchEntity($fighter, $datafighter);
+                
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
+                
                 $this->set('fighter', $fighter);
 
                 if ($fighter) {
@@ -67,13 +68,9 @@ class ArenasController extends AppController {
             } else if (array_key_exists('supprimer', $this->request->data)) {
                 $data = $this->request->data['supprimer'];
                 
-                $fighter = $this->Fighters->newEntity();
-                $datafighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $data);
-                $fighter = $this->Fighters->patchEntity($fighter, $datafighter);
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $data);
 
                 $fighter = $this->Fighters->kill($fighter);
-
-                pr($fighter);
 
                 if (!$fighter) {
                     $this->Flash->success(__("Combattant supprimé !"));
