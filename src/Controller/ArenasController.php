@@ -11,10 +11,13 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use App\Model\Table\FightersTable;
+use Cake\Core\Configure;
 
-class ArenasController extends AppController {
+class ArenasController extends AppController
+{
 
-    public function index() {
+    public function index()
+    {
         $this->set('myname', "Corentin Leal");
 
         $this->loadModel('Fighters');
@@ -23,11 +26,13 @@ class ArenasController extends AppController {
         $this->set('test', $var);
     }
 
-    public function login() {
-        
+    public function login()
+    {
+
     }
 
-    public function fighter() {
+    public function fighter()
+    {
 
         $this->set('fighter', null);
 
@@ -121,12 +126,26 @@ class ArenasController extends AppController {
         }
     }
 
-    public function sight() {
-        
+    public function sight()
+    {
+        $this->set('width', Configure::read('MAPWIDTH'));
+        $this->set('height', Configure::read('MAPHEIGHT'));
+
+        $this->loadModel('Fighters');
+
+        //pr($this->request);
+        if ($this->request->is('post')) {
+
+            if (array_key_exists('ChooseFighter', $this->request->data) && $this->request->data['ChooseFighter']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('ChooseFighter'));
+                $this->set('currentFighter', $fighter);
+            }
+        }
     }
 
-    public function diary() {
-        
+    public function diary()
+    {
+
     }
 
 }
