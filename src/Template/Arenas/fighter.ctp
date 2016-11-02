@@ -119,3 +119,4 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                     </div>
                     <?php
                 }?>
+
