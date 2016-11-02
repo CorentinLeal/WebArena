@@ -12,12 +12,14 @@ namespace App\Model\Table;
 use Cake\Core\Configure;
 use Cake\ORM\Table;
 
-class FightersTable extends Table {
+class FightersTable extends Table
+{
     /*
      * TP1
      */
 
-    public function getBestFighter() {
+    public function getBestFighter()
+    {
         $test = $this->find('all')->order('level')->limit(1);
         return $test->toArray();
     }
@@ -27,7 +29,8 @@ class FightersTable extends Table {
      * Paramètres: l'id du Joueur dont on veut le Combattant, ainsi que le nom de ce Combattant
      */
 
-    public function getFighterByUserAndName($user_id, $name) {
+    public function getFighterByUserAndName($user_id, $name)
+    {
 
         $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'name' => $name)))->toArray();
 
@@ -37,8 +40,6 @@ class FightersTable extends Table {
 
         $id = $datafighter[0]['id'];
         $fighter = $this->get($id);
-
-
         return $fighter;
     }
 
@@ -47,7 +48,8 @@ class FightersTable extends Table {
      * Paramètre: l'id du Joueur dont on veut les Combattants
      */
 
-    public function getAllFightersByUser($user_id) {
+    public function getAllFightersByUser($user_id)
+    {
 
         $fighters = $this->find('all', array('conditions' => array('player_id' => $user_id)))->toArray();
         foreach ($fighters as $fighter) {
@@ -65,7 +67,8 @@ class FightersTable extends Table {
      * Paramètre: le nom du Combattant dont on veut les attributs
      */
 
-    public function getFighterByName($name) {
+    public function getFighterByName($name)
+    {
 
         $datafighter = $this->findByName($name)->toArray();
         $id = $datafighter[0]['id'];
@@ -80,21 +83,22 @@ class FightersTable extends Table {
      * Valeur de retour: un vecteur indispensable pour la fonction seDeplace()
      */
 
-    public function vecteur($direction) {
+    public function vecteur($direction)
+    {
         $vecteur = array('x' => 0, 'y' => 0);
 
         switch ($direction) {
             case "nord":
-                $vecteur['y'] ++;
+                $vecteur['y']--;
                 break;
             case "sud":
-                $vecteur['y'] --;
+                $vecteur['y']++;
                 break;
             case "est":
-                $vecteur['x'] ++;
+                $vecteur['x']++;
                 break;
             case "ouest":
-                $vecteur['x'] --;
+                $vecteur['x']--;
                 break;
         }
 
@@ -109,22 +113,21 @@ class FightersTable extends Table {
      *                     Si la case est occupée, retourne le Combattant qui est dessus
      */
 
-    public function estLa($fighter, $vecteur) {
-        $player = $fighter;
+    public function estLa($fighter, $vecteur)
+    {
         $target = array();
         $result = -1;
-
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
 
-        if ((($player->coordinate_x + $vecteur['x']) >= 0) &&
-                (($player->coordinate_x + $vecteur['x']) < $MAPWIDTH) &&
-                (($player->coordinate_y + $vecteur['y'] >= 0) &&
-                (($player->coordinate_y + $vecteur['y']) < $MAPHEIGHT)
-                )
+        if ((($fighter->coordinate_x + $vecteur['x']) >= 0) &&
+            (($fighter->coordinate_x + $vecteur['x']) < $MAPWIDTH) &&
+            (($fighter->coordinate_y + $vecteur['y'] >= 0) &&
+                (($fighter->coordinate_y + $vecteur['y']) < $MAPHEIGHT)
+            )
         ) {
-            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($player->coordinate_x + $vecteur['x']))));
+            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($fighter->coordinate_x + $vecteur['x']), 'coordinate_y' => ($fighter->coordinate_y + $vecteur['y']))))->toArray();
         } else
             $result = -2;
         if (count($target) == 0)
@@ -141,26 +144,25 @@ class FightersTable extends Table {
      * Valeur de retour: Un Evenement déplacement avec nom et coordonnées
      */
 
-    public function seDeplace($fighter, $direction) {
+    public function seDeplace($fighter, $direction)
+    {
         $event = array('name' => '', 'coordinate_x' => 0, 'coordinate_y' => 0);
 
-        $player = $fighter;
-
-        $event['name'] .= $player->name . " se déplace";
+        $event['name'] .= $fighter->name . " se déplace";
 
         $vecteur = $this->vecteur($direction);
 
-        $event['name'] .= $player->coordinate_x + $vecteur['x'];
-        $event['name'] .= $player->coordinate_y + $vecteur['y'];
+        $fighter->coordinate_x = $fighter->coordinate_x + $vecteur['x'];
+        $fighter->coordinate_y = $fighter->coordinate_y + $vecteur['y'];
 
         /*
          * On vérifie si un Combattant ne se trouve pas déjà sur la case cible
          */
-        if ($this->estLa($player, $vecteur) == 0) {
-
-            $this->save($player);
-        } else
+        if ($this->estLa($fighter, $vecteur) == 0) {
+            $this->save($fighter);
+        } else {
             $event['name'] .= " mais se heurte à quelqu'un.";
+        }
 
         return $event;
     }
@@ -171,7 +173,8 @@ class FightersTable extends Table {
      * Sauvegarde en base tous les attributs du nouveau Combattant. (Induit un nouveau tuple dans la table Fighter).
      */
 
-    public function createFighter($playerId, $name) {
+    public function createFighter($playerId, $name)
+    {
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
@@ -209,7 +212,8 @@ class FightersTable extends Table {
      * Retourne un Event en array avec des valeurs nom, coordinate_x et coordinate_y initialisées
      */
 
-    public function attaque($fighter, $direction) {
+    public function attaque($fighter, $direction)
+    {
 
         //Détermination du vecteur d'attaque à partir de la direction choisi par le joueur
         $vector = $this->vecteur($direction);
@@ -235,9 +239,10 @@ class FightersTable extends Table {
         }
     }
 
-    public function kill($fighter) {
+    public function kill($fighter)
+    {
 
-        $result = $this->delete($fighter);
+        $result = $this->delete($fighter->id);
 
         return $result;
     }
@@ -247,7 +252,8 @@ class FightersTable extends Table {
      * Reçoit un combattant et retourne un booléen
      */
 
-    public function canLevelUp($fighter) {
+    public function canLevelUp($fighter)
+    {
 
         $XPUP = Configure::read('XPUP');
         $result = false;
@@ -263,7 +269,8 @@ class FightersTable extends Table {
      * Reçoit un combattant et une stat à  améliorer et retourne le Fighter modifié
      */
 
-    public function levelUp($fighter, $stat) {
+    public function levelUp($fighter, $stat)
+    {
 
         $XPUP = Configure::read('XPUP');
 
@@ -272,17 +279,18 @@ class FightersTable extends Table {
 
             //Retrait de XPUP d'xp, incrément du level, amélioration d'une stat et remise au max des HP
             $fighter->xp -= $XPUP;
-            $fighter->level ++;
-            
+            $fighter->level++;
+
+
             switch ($stat) {
                 case 'health':
-                    $fighter->skill_health ++;
+                    $fighter->skill_health++;
                     break;
                 case 'sight':
-                    $fighter->skill_sight ++;
+                    $fighter->skill_sight++;
                     break;
                 case 'strength':
-                    $fighter->skill_strength ++;
+                    $fighter->skill_strength++;
                     break;
             }
         }
