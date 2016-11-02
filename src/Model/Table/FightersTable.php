@@ -29,8 +29,7 @@ class FightersTable extends Table {
 
     public function getFighterByUserAndName($user_id, $name) {
 
-        
-        $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'fighters.name' => $name)))->toArray();
+        $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'name' => $name)))->toArray();
         $id = $datafighter[0]['id'];
         $fighter = $this->get($id);
 
