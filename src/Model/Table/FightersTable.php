@@ -37,8 +37,6 @@ class FightersTable extends Table {
 
         $id = $datafighter[0]['id'];
         $fighter = $this->get($id);
-
-
         return $fighter;
     }
 
@@ -237,7 +235,7 @@ class FightersTable extends Table {
 
     public function kill($fighter) {
 
-        $result = $this->delete($fighter);
+        $result = $this->delete($fighter->id);
 
         return $result;
     }
@@ -273,6 +271,7 @@ class FightersTable extends Table {
             //Retrait de XPUP d'xp, incrément du level, amélioration d'une stat et remise au max des HP
             $fighter->xp -= $XPUP;
             $fighter->level ++;
+            
             
             switch ($stat) {
                 case 'health':
