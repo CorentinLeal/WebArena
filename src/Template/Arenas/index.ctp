@@ -15,7 +15,7 @@ $this->Html->meta('description', 'WebArena le site de jeu de combat en arène mu
         des pièges ainsi que d'autres combattants seront présent à la pelle !</p>
         <p>
             Le but du jeu est de déplacer son personnage sur le plateau en évitant les obstacles et en affrontant les
-            autres combattants dans le but de gagner de l'expérience.<br/>
+            autres combattants pour gagner de l'expérience.<br/>
             Chaque combattant possède 3 caractéristiques: la force (qui définit les dégâts), la vie (qui ne doit pas tomber à
             0), la vision (qui permet d'appréhender les cases autour du joueur)<br/>
             Les attaques ainsi que les déplacements se font vers une direction (nord, sud, est, ouest) et au case par
