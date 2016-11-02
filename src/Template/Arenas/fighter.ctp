@@ -75,18 +75,17 @@ coord y : ' . $fighter->coordinate_y;
 
 
                             echo $this->Form->create('FighterLevelUpStrength');
-                            echo $this->Form->input('FighterLevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Force'));
-                            $this->Form->end();
+                            echo $this->Form->end();
 
                             echo $this->Form->create('FighterLevelUpSight');
-                            echo $this->Form->input('FighterLevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Vision'));
-
-                            $this->Form->end();
+                            echo $this->Form->end();
 
                             echo $this->Form->create('FighterLevelUpHealth');
-                            echo $this->Form->input('FighterLevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Santé'));
                             $this->Form->end();
                         }
@@ -95,17 +94,9 @@ coord y : ' . $fighter->coordinate_y;
                         echo $this->Form->create('FighterKill');
                         echo $this->Form->input('supprimer', array('default' => $fighter->name, 'type' => 'hidden'));
                         echo $this->Form->button(__('Supprimer'));
-                        ?>
-                        <?= $this->Form->end()
+                        echo $this->Form->end()
                         ?>
                     </div>
                 </div>
-                <?php }
+            <?php }
             ?>
-
-
-            <script type="text/javascript">
-                function fighterName(name) {
-                    return name;
-                }
-            </script>
