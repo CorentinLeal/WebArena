@@ -11,7 +11,7 @@
     </div>
 
     <?php
-    if ($currentFighter){
+    if ($currentFighter) {
         echo "<h1>Légende</h1>";
         echo "<p>F: Fighter | 0: Case Vide</p>";
         $posX = $currentFighter->coordinate_x;
@@ -21,9 +21,9 @@
             echo "<tr>";
             for ($j = 0; $j < $width; $j++) {
                 echo "<td>";
-                if ($j==$posX && $i==$posY){
+                if ($j == $posX && $i == $posY) {
                     echo "F";
-                }else{
+                } else {
                     echo "0";
                 }
                 echo "</td>";
@@ -32,6 +32,7 @@
         }
         echo "</table>";
 
+        echo "<div class=\"move\">";
         echo "<div class=\"move left\">";
         echo $this->Form->create('MoveFighter');
         echo $this->Form->input('MoveLeft', array('default' => $currentFighter->name, 'type' => 'hidden'));
@@ -59,6 +60,39 @@
         echo $this->Form->button('Down');
         echo $this->Form->end();
         echo "</div>";
+        echo "</div>";
+
+
+        echo "<div class=\"attack\">";
+        echo "<div class=\"attack left\">";
+        echo $this->Form->create('AttackLeft');
+        echo $this->Form->input('AttackLeft', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Attack Left');
+        echo $this->Form->end();
+        echo "</div>";
+
+        echo "<div class=\"attack right\">";
+        echo $this->Form->create('AttackRight');
+        echo $this->Form->input('AttackRight', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Attack Right');
+        echo $this->Form->end();
+        echo "</div>";
+
+        echo "<div class=\"attack up\">";
+        echo $this->Form->create('AttackUp');
+        echo $this->Form->input('AttackUp', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Attack Up');
+        echo $this->Form->end();
+        echo "</div>";
+
+        echo "<div class=\"attack down\">";
+        echo $this->Form->create('AttackDown');
+        echo $this->Form->input('AttackDown', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Attack Down');
+        echo $this->Form->end();
+        echo "</div>";
+        echo "</div>";
+
     }
     ?>
 

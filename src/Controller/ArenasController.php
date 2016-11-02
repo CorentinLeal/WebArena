@@ -190,6 +190,30 @@ class ArenasController extends AppController
                 $this->set('currentFighter', $fighter);
 
                 $this->Fighters->seDeplace($fighter, "sud");
+
+            }else if (array_key_exists('AttackLeft', $this->request->data) && $this->request->data['AttackLeft']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('AttackLeft'));
+                $this->set('currentFighter', $fighter);
+
+                $this->Fighters->attaque($fighter, "ouest");
+
+            }else if (array_key_exists('AttackRight', $this->request->data) && $this->request->data['AttackRight']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('AttackRight'));
+                $this->set('currentFighter', $fighter);
+
+                $this->Fighters->attaque($fighter, "est");
+
+            }else if (array_key_exists('AttackUp', $this->request->data) && $this->request->data['AttackUp']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('AttackUp'));
+                $this->set('currentFighter', $fighter);
+
+                $this->Fighters->attaque($fighter, "nord");
+
+            }else if (array_key_exists('AttackDown', $this->request->data) && $this->request->data['AttackDown']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('AttackDown'));
+                $this->set('currentFighter', $fighter);
+
+                $this->Fighters->attaque($fighter, "sud");
             }
         }
     }
