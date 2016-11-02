@@ -15,6 +15,16 @@ use Cake\Core\Configure;
 
 class ArenasController extends AppController
 {
+    public function beforeFilter(Event $event)
+    {
+        parent::beforeFilter($event);
+        // Pages accessibles sans Ãªtre connectÃ©
+        $this->Auth->allow('login');
+        $this->Auth->allow('googleLogin');
+        $this->Auth->allow('googleCallback');
+        $this->Auth->allow('logout');
+        $this->Auth->allow('signup');
+    }
 
     public function index()
     {

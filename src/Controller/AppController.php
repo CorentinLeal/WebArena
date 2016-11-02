@@ -44,17 +44,14 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
+            'authorize' => ['Controller'],
+            'loginAction' => array(
+                    'admin' => false,
+                    'controller' => 'arenas',
+                    'action' => 'login'),
             'loginRedirect' => [
                 'controller' => 'Arenas',
-                'action' => 'sight'
-            ],
-            'logoutRedirect' => [
-                'controller' => "Arenas",
                 'action' => 'index'
-            ],
-            'loginAction' => [
-                'controller' => "Players",
-                'action' => 'login'
             ],
             'authenticate' => [
                 'Form' => [
@@ -64,6 +61,10 @@ class AppController extends Controller
                         'password' => 'password',
                     ]
                 ]
+            ],
+            'logoutRedirect' => [
+                'controller' => 'Arenas',
+                'action' => 'index'
             ]
         ]);
     }
