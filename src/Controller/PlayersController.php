@@ -55,11 +55,7 @@ class PlayersController extends AppController
     {
         if ($this->request->is('post')) {
             $player = $this->Auth->identify();
-            pr($this->request->data);
-            pr($this->Auth);
-            if ($player==null){
-                pr("test");
-            }
+            
             if ($player) {
                 $this->Auth->setUser($player);
                 return $this->redirect($this->Auth->redirectUrl());
