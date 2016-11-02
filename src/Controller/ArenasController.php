@@ -220,7 +220,26 @@ class ArenasController extends AppController
 
     public function diary()
     {
+        $this->set('fighter', null);
 
+        $this->loadModel('Fighters');
+
+        if (array_key_exists('choix', $this->request->data)&& $this->request->data['choix']!=null) {
+            $name = $this->request->data('choix');
+
+            $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
+
+            $this->set('fighter', $fighter);
+
+            if ($fighter) {
+                $this->Flash->success(__("Combattant selectionné !"));
+                $this->set('fighter', $fighter);
+            }
+        }
+
+        $this->set('event', null);
+
+        $this->loadModel('Events');
     }
 
 }
