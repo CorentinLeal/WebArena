@@ -52,18 +52,16 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                 </h2>
                 <?php
                 echo '
-                                     <div class="vie">HP (' . $fighter->current_health . '/' .
-                $fighter->skill_health . ')
-        </div>
-        </br>
-
-        <div class="xp">XP (' . $fighter->xp . '/4)</div>
-    </div>
-</div></br>
-<p> force : ' . $fighter->skill_strength . '</p>
-<p> vue : ' . $fighter->skill_sight . '</p>
-<p>coord x : ' . $fighter->coordinate_x . '</p>
-coord y : ' . $fighter->coordinate_y;
+                <div class="vie">HP (' . $fighter->current_health . '/' . $fighter->skill_health . ')
+                </div>
+                </br>
+                <div class="xp">XP (' . $fighter->xp . '/4)</div>
+                    </div>
+                </div></br>
+                <p> force : ' . $fighter->skill_strength . '</p>
+                <p> vue : ' . $fighter->skill_sight . '</p>
+                <p>coord x : ' . $fighter->coordinate_x . '</p>
+                <p>coord y : ' . $fighter->coordinate_y . '</p>';
                 ?>
 
 
@@ -89,8 +87,9 @@ coord y : ' . $fighter->coordinate_y;
                             echo $this->Form->button(__('Augmenter Santé'));
                             $this->Form->end();
                         }
-
-
+?>
+                    <div class="levelUp">
+                        <?php
                         echo $this->Form->create('FighterKill');
                         echo $this->Form->input('supprimer', array('default' => $fighter->name, 'type' => 'hidden'));
                         echo $this->Form->button(__('Supprimer'));
