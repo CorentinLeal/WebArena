@@ -58,10 +58,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('content') ?>
 </div>
 <footer>
-    <p>Group : SI1-12</p>
-    <p>Members: DUBAELE Rémi, LEAL Corentin, LIMERMONT Florian, PLANCHE Logan</p>
-    <p>Options: DG</p>
-    <p>Github: https://github.com/CorentinLeal/WebArena</p>
+    <p>Group : SI1-12 Members: DUBAELE Rémi, LEAL Corentin, LIMERMONT Florian, PLANCHE Logan Options: DG Github: https://github.com/CorentinLeal/WebArena</p>
 </footer>
 </body>
 </html>
