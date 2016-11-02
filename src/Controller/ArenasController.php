@@ -40,7 +40,7 @@ class ArenasController extends AppController
 
 
         $fighter = null;
-        
+
         if ($this->request->is('post')) {
         
             //Creer un nouveau combattant
@@ -166,8 +166,11 @@ class ArenasController extends AppController
             if (array_key_exists('ChooseFighter', $this->request->data) && $this->request->data['ChooseFighter']!=null){
                 $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('ChooseFighter'));
                 $this->set('currentFighter', $fighter);
-            }else if (array_key_exists('MoveFighter', $this->request->data) && $this->request->data['MoveFighter']!=null){
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('ChooseFighter'));
+            }else if (array_key_exists('MoveLeft', $this->request->data) && $this->request->data['MoveLeft']!=null){
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data('MoveLeft'));
+                $this->set('currentFighter', $fighter);
+
+                $this->Fighters->seDeplace($fighter, "ouest");
             }
         }
     }
