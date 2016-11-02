@@ -297,5 +297,5 @@ class Surroundings extends Table {
 
         $this->generate('mob');
     }
-
+    
 }
