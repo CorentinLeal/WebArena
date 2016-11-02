@@ -1,1 +1,564 @@
-Log
+commit 0c94ba3f546ced16f0a2b51c021efb4968917112
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 23:05:50 2016 +0100
+
+    Ajout redirection inscription
+
+commit 8a181bda030c193b30298cbe67823b1234cb5882
+Merge: 7c1b214 8dcf8f9
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 22:40:17 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 7c1b214962220d8768f0e7d0351f036f0d0a0b77
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 22:39:38 2016 +0100
+
+    Attack View and Controller
+
+commit 8dcf8f9a27f2dd837354214edd9c283de79065b0
+Merge: 1b6a991 8fbba5e
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 22:14:32 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 8fbba5e5ab267d55a7ca77f9e77c05a06842d9cb
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 21:49:44 2016 +0100
+
+    EventTables modif fonction enregistrer
+
+commit 1b6a99100ea7d89592cd9692427c856c2f444d2c
+Merge: e6d9d41 7dfabc1
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 21:24:01 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit e6d9d4138eff769ae9952b54bc69d6e68a24f34c
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 21:23:53 2016 +0100
+
+    Ajout en cours de Diary
+
+commit 7dfabc174aa92a9849c0592363e31df42c26af7b
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 21:21:17 2016 +0100
+
+    End of moving from sight
+
+commit fa8376b4a0ab9cdb642a44d5e6f693ffd56682ac
+Merge: 8343aeb c851f1a
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 20:31:27 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 8343aebc7bbc7a2dbb9df853b43856267893abc2
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 20:31:18 2016 +0100
+
+    test
+
+commit 02d3847963685a4d6f97f8b2afcfaf0de97cf839
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 20:18:45 2016 +0100
+
+    Revert "EventTables modif fonction enregistrer"
+    
+    This reverts commit 6b44579fdc08fa67535a2e1902bb0e942c1fd47b.
+    
+    test
+
+commit c851f1a34480b34775d187eadebdeca94a08e153
+Merge: db3810f a42e554
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 20:13:02 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit db3810f5b1d098a85372866e375793828e69ad51
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 20:12:01 2016 +0100
+
+    Refactoring, dev sight
+
+commit a42e5544f4c8e2b8e3e5c9fb625bcfdab91d7e72
+Merge: 9c09e18 23e06d1
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 20:07:39 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 23e06d1b300f14fd9c06c6b709f979578261d9ae
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 20:07:07 2016 +0100
+
+    CR LF
+
+commit 9c09e184d932cb2f3ccb8fc0d97fc99c6ccdcbbd
+Merge: b9e3962 0cb5f83
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 20:03:22 2016 +0100
+
+    Merge origin/master
+
+commit b9e3962e15d45ff76383b03a891f8b30f3eda860
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 19:53:17 2016 +0100
+
+    EventTables modif fonction enregistrer
+
+commit 6b44579fdc08fa67535a2e1902bb0e942c1fd47b
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 19:34:30 2016 +0100
+
+    EventTables modif fonction enregistrer
+
+commit 0cb5f83f7d51c704a0a66be528fe994002f8db6b
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 18:35:23 2016 +0100
+
+    Fighters Model, fix bugs, code refactoring
+
+commit 6ee955dce4d6fe36d6b15fc19d17ec0e9ad8a12d
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 17:26:27 2016 +0100
+
+    Table Surroundings
+
+commit e990ad3e18c86644904ed09eefb752bc892b2990
+Merge: 153e7fe 7748f17
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 17:17:58 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 153e7fe5db0f3b360959673e8a024ba28aebf56e
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 17:11:31 2016 +0100
+
+    Sight | Amélioration de la vue début de l'ajout des déplacements
+
+commit 7748f17da74d939b40c156e351dd18392ce94f49
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 16:12:28 2016 +0100
+
+    update affichage des caractéristiques
+
+commit 35347922fb57cc71a750d0b25d61b5a61207f426
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 16:02:37 2016 +0100
+
+    update levelUp
+
+commit 234eba2b2445b34eaaaa66281b21458729866a62
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 15:12:43 2016 +0100
+
+    update bouton
+
+commit cd2e93d8b0107529c0cf2f68f4160180e8202ec2
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Wed Nov 2 14:03:39 2016 +0100
+
+    Footer : hebergement + log
+
+commit a180644089983883750f7216a534fc46ec3d83b0
+Merge: 9e05aed cbc94c8
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:46:37 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 9e05aedfddafbbf869568abf03935a1bc256cbf7
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:46:31 2016 +0100
+
+    test
+
+commit cbc94c8955cc4b65adf62e8a51121ade7ead42d6
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 13:42:13 2016 +0100
+
+    modif grammaire texte de description du jeu
+
+commit 1f310614e55dc0767b2a14617f31e8ce912f1181
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:37:14 2016 +0100
+
+    creation du fighter avec un nom déjà utilisé
+
+commit 3670021253c501b41bf90a494744e39e50189572
+Merge: eccd54f ddef83f
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 13:16:38 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+    
+    Merge inconnu
+
+commit eccd54f920e834f0d3caf73e8fd99844ae2a40f4
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 13:16:27 2016 +0100
+
+    Sight beginning can display the arena and the fighter selected
+
+commit 61e35239d5c354f8189119efd68eca44444f3a92
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:14:03 2016 +0100
+
+    Condition : création bloquée si nom de fighter est déjà attribué
+
+commit ddef83fc147e2ce34f8cc28b18b5ff04fdb33aaf
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Wed Nov 2 13:09:46 2016 +0100
+
+    fighter line ending
+
+commit 3a5a595cbb1a5799ff71ac8b8b85c058e06d3f09
+Merge: 8fbd6bb 888e107
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:04:45 2016 +0100
+
+    Merge origin/master
+
+commit 8fbd6bbff3cdfe1f87c36362d72082863f040cb9
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 13:03:34 2016 +0100
+
+    Condition : création bloquée si nom de fighter est déjà attribué
+
+commit 888e10772e5a8da677d3aeaedf5d4ddcd162867d
+Merge: ee086e5 6d56bf0
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Wed Nov 2 12:53:10 2016 +0100
+
+    Merge origin/master
+
+commit ee086e57ec5d6045131e12db850e62acd11fdcf5
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Wed Nov 2 12:52:58 2016 +0100
+
+    Event model
+
+commit 6d56bf092905db38577c1881849b85615b50c990
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Wed Nov 2 12:48:25 2016 +0100
+
+    indentation
+
+commit 9059dcb05aa6db98f7a8ced2eedf5dbc319b37f4
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 12:44:33 2016 +0100
+
+    Restructuration du html dans fighter.ctp, footer en une ligne
+
+commit bc18e195259b0a9f6522752afef0777d06763287
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 10:29:19 2016 +0100
+
+    Modif des noms de classes en html
+
+commit 57fff5f54bde41821125fd25a6b1748b59c3b310
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 10:18:22 2016 +0100
+
+    getFighterByUserAndName fix a bug
+
+commit ecec99fb1be1e295fb7b4ef41a1e48899ebe51e3
+Merge: 8d514ca f638c51
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 10:15:18 2016 +0100
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 8d514cadd3361987873bfce62985564c199e5bf0
+Author: Logan <logan.planche@gmail.com>
+Date:   Wed Nov 2 10:14:36 2016 +0100
+
+    Modif du texte d'accueil de l'index et mise sur une seule ligne du footer
+
+commit f638c51fa0f2feb6186810efd7f7bf18322bee26
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 08:50:15 2016 +0100
+
+    CR LF problem
+
+commit 21e3af943c65959963979c5e016cbe8eb3ed27a3
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Nov 2 08:44:46 2016 +0100
+
+    CRLF LF
+
+commit 09743ab25d2f152666cf230f22fba7df2c2cfcde
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 18:10:05 2016 +0100
+
+    Modifications des fonctions estLa, attaque et seDeplace
+
+commit 5cd7cbe7da327156d76eff10d864c47262d006aa
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 15:50:24 2016 +0100
+
+    update affichage lvl
+
+commit 5ff08b688fcba0563995156a8ea6a756f8d1f5ed
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 15:26:12 2016 +0100
+
+    update methode get
+
+commit b3d7d0a9506548c95ec76442764a292bd896cce0
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 14:16:07 2016 +0100
+
+    Gestion des levels et des augmentations de compétences
+
+commit 0353408efa5a42c1863850e8a3e9da5246928e87
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 12:50:55 2016 +0100
+
+    méthode plus robuste pour les fonctions getFighter
+    + méthode plus propre pour les appels des attributs des entity dans la vue
+
+commit 6c719106cd4950580dce0685b020a617cc05ec81
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 02:06:31 2016 +0100
+
+    Création de la suppréssion d'un fighter
+    (probleme : ne supprime pas en base de donnée)
+
+commit 74859375838dbf1124be81d2ef6f8f3f8dce2066
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 01:06:51 2016 +0100
+
+    modif affichage
+
+commit 84baf6fe85b16fa541def2d06048c96a690dc107
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Tue Nov 1 00:37:52 2016 +0100
+
+    Selection d'un fighter et vue de ses caractéristiques
+
+commit f3414c17dd41dca764109833c34739d8b2fff571
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Mon Oct 31 20:47:18 2016 +0100
+
+    Revert correction V1 et V2
+
+commit f47b0e24473c313a212dba3c22c905aa93b1d393
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Mon Oct 31 20:26:17 2016 +0100
+
+    Correction select fighter view + controler V2
+
+commit 2739bf8e9983aa321d15572f79a41dd1ebb3ce8f
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Mon Oct 31 20:19:36 2016 +0100
+
+    Correction select fighter view + controler
+
+commit 24bf4b8c35a4b090428c6e079f9fcda69e7c2878
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Mon Oct 31 19:16:20 2016 +0100
+
+    Ajout d'un mode de selection de fighter (avec une erreur)
+    Ajout de la vue des caractéristiques du fighter créé
+
+commit 4579d90a9ced8a9b9d1fcc9e960915bd713efdff
+Author: RemiDBL <remi@dubaele.fr>
+Date:   Mon Oct 31 17:07:56 2016 +0100
+
+    Fonction Fighter attaque
+
+commit 5a5796332d58e31c51a85c0b82a30a3a9b4481f2
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Mon Oct 31 14:21:18 2016 +0100
+
+    ajout de contenu
+
+commit 6cd7fa80b8c71b7e15ffb5f03eb6b527829409fc
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Mon Oct 31 13:56:28 2016 +0100
+
+    fonction save dans arenasController + message quand le combattant est créé
+
+commit d41d03587670c7d442168df09b824df9778735c4
+Author: Logan <logan.planche@gmail.com>
+Date:   Mon Oct 31 09:52:44 2016 +0100
+
+    Insertion de commentaires sur toutes les fonctions de
+    FightersTable.php
+
+commit b9e43b8a4820ecbdca47e3c84965df0e42f421fb
+Author: flimermo <flimermo@FLIMERMO-FR.fr.oracle.com>
+Date:   Sun Oct 30 21:49:03 2016 +0100
+
+    Rajout de la fonction pour ajouter des fighters
+
+commit 9b5edb7a397a179b5ac83528f2772cf122284075
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Sun Oct 30 20:38:47 2016 +0100
+
+    Add custom configuration
+
+commit cbaa9f33e9ae7c615a3b5fd7b7f4dac7fa2e2489
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Sat Oct 29 19:22:13 2016 +0200
+
+    FightersTable.php | Add a ; at the end of a line.
+
+commit 20bc4acee54818be92f7271bb913aee263335300
+Merge: 60df820 4a9f669
+Author: Logan <logan.planche@gmail.com>
+Date:   Sat Oct 29 17:43:24 2016 +0200
+
+    test
+
+commit 60df820cbb22c930feb569e395f95286138b847a
+Author: Logan <logan.planche@gmail.com>
+Date:   Sat Oct 29 15:54:59 2016 +0200
+
+    Ajouts des fonctions de recuperation d'un combattant par nom, id_user, de la fonction qui teste si une case est occupée, de la fonction de deplacement
+
+commit 4a9f66932d0a7c66ff5e00b6b8f27b3f92ae8cb8
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 28 16:26:57 2016 +0200
+
+    Fix the connection
+
+commit b45f0a0d766e86a92033faca4d8ad6d77e0f03ab
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 28 10:13:54 2016 +0200
+
+    Default template | Bad spelling
+
+commit 4d09d35d1cae9eb4ee12fd4d2d76075192fea683
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 28 00:32:20 2016 +0200
+
+    Refactoring
+
+commit 8c7edf80be09af356f9fa50b774b2d46639ff80e
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 28 00:29:32 2016 +0200
+
+    PlayersController.php login.ctp | Add login feature
+
+commit 0a55281803aa377dc3cac765c6d24da8dea98da1
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 28 00:27:59 2016 +0200
+
+    AppController.php | Change default user controller to player
+
+commit 2c7730093e54f35a8a705efedeae551f34ef7046
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Thu Oct 27 23:52:05 2016 +0200
+
+    Player.php | Creation of the model, add the function permiting to hash the passwords
+
+commit f3ae659e37b2e4e1df0e61c3d4e65a07256fac08
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Thu Oct 27 23:45:52 2016 +0200
+
+    PlayersController.php | Add login and logout functions.
+
+commit f3cf6d3b851ebcd69fb7a5e9426ea041c1c65095
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Thu Oct 27 23:44:31 2016 +0200
+
+    AppController.php | Add redirection before login and after logout, change authorization on the different pages
+
+commit 81ff456c9e6b0a0d649379198ca7e3363f4dbb74
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Thu Oct 27 23:16:07 2016 +0200
+
+    Add a model, controller and a template for the Player. This is used for the signup.
+
+commit bbb588ac48e0b9ad6bc98cd6054122a3317e04a0
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Oct 26 14:03:56 2016 +0200
+
+    TP3
+
+commit 4b22b87aaf31983567c3a69c04f391d396da3011
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Oct 26 12:43:35 2016 +0200
+
+    Add public to the function description
+
+commit dc51dbad054bf3d79111c882a8511a261aa5166e
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Oct 26 12:41:30 2016 +0200
+
+    TP2
+
+commit e68480c14394ebe8fb9cc6f6cd7d2371546de4a8
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Wed Oct 19 12:28:05 2016 +0200
+
+    Delete autogenerated pages
+
+commit a4fb7fc202af2bc5c85baa675250e2ab6b3dbebb
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Sat Oct 15 19:13:47 2016 +0200
+
+    Model/Entity/Player.php | The password is now hashed. The function _setPassword() has been added.
+
+commit 21ca911ec5f92cf6fd8c65885bc9587cfd2a7dd7
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Sat Oct 15 18:54:44 2016 +0200
+
+    Initialization with bake
+
+commit 5520180a62af3277248a73660fce41b82cb30565
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:31:12 2016 +0200
+
+    Remove ignored files
+
+commit 1d95f7cc60c25b07d342e997c4d04d7b9c1f5845
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:26:03 2016 +0200
+
+    Remove ignored files
+
+commit 54c8cacd67a337859bbd71e48063cfa0013f62b6
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:22:18 2016 +0200
+
+    test
+
+commit 51cc28024721c8242d0cdef94e48541ce29e4a0c
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:11:29 2016 +0200
+
+    .gitignore
+
+commit b4ef42c5cd1f8a1b68611e35b5b6732b27941a8c
+Merge: 64dffbf 8deace6
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:04:42 2016 +0200
+
+    Merge branch 'master' of https://github.com/CorentinLeal/WebArena
+
+commit 8deace6d6c08648ed2166820c09c871d6f5f43fd
+Author: CorentinLeal <leal.corentin@gmail.com>
+Date:   Fri Oct 14 00:00:16 2016 +0200
+
+    Delete README.md
+
+commit 64dffbf60d313f86bcdcba7d458a74796c055104
+Author: Corentin Leal <leal.corentin@gmail.com>
+Date:   Thu Oct 13 23:59:56 2016 +0200
+
+    First commit
+
+commit e96ae8aaeb1973a4bf873304dcbc5826d79ca446
+Author: CorentinLeal <leal.corentin@gmail.com>
+Date:   Thu Oct 13 22:25:21 2016 +0200
+
+    Initial commit
