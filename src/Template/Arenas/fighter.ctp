@@ -52,18 +52,16 @@ $this->Html->meta('description', 'Combattant', array('inline' => false));
                 </h2>
                 <?php
                 echo '
-                                     <div class="vie">HP (' . $fighter->current_health . '/' .
-                $fighter->skill_health . ')
-        </div>
-        </br>
-
-        <div class="xp">XP (' . $fighter->xp . '/4)</div>
-    </div>
-</div></br>
-<p> force : ' . $fighter->skill_strength . '</p>
-<p> vue : ' . $fighter->skill_sight . '</p>
-<p>coord x : ' . $fighter->coordinate_x . '</p>
-coord y : ' . $fighter->coordinate_y;
+                <div class="vie">HP (' . $fighter->current_health . '/' . $fighter->skill_health . ')
+                </div>
+                </br>
+                <div class="xp">XP (' . $fighter->xp . '/4)</div>
+                    </div>
+                </div></br>
+                <p> force : ' . $fighter->skill_strength . '</p>
+                <p> vue : ' . $fighter->skill_sight . '</p>
+                <p>coord x : ' . $fighter->coordinate_x . '</p>
+                <p>coord y : ' . $fighter->coordinate_y . '</p>';
                 ?>
 
 
@@ -75,37 +73,29 @@ coord y : ' . $fighter->coordinate_y;
 
 
                             echo $this->Form->create('FighterLevelUpStrength');
-                            echo $this->Form->input('FighterLevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpStrength', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Force'));
-                            $this->Form->end();
+                            echo $this->Form->end();
 
                             echo $this->Form->create('FighterLevelUpSight');
-                            echo $this->Form->input('FighterLevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpSight', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Vision'));
-
-                            $this->Form->end();
+                            echo $this->Form->end();
 
                             echo $this->Form->create('FighterLevelUpHealth');
-                            echo $this->Form->input('FighterLevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
+                            echo $this->Form->input('LevelUpHealth', array('default' => $fighter->name, 'type' => 'hidden'));
                             echo $this->Form->button(__('Augmenter Santé'));
                             $this->Form->end();
                         }
-
-
+?>
+                    <div class="levelUp">
+                        <?php
                         echo $this->Form->create('FighterKill');
                         echo $this->Form->input('supprimer', array('default' => $fighter->name, 'type' => 'hidden'));
                         echo $this->Form->button(__('Supprimer'));
-                        ?>
-                        <?= $this->Form->end()
+                        echo $this->Form->end()
                         ?>
                     </div>
                 </div>
-                <?php }
+            <?php }
             ?>
-
-
-            <script type="text/javascript">
-                function fighterName(name) {
-                    return name;
-                }
-            </script>
