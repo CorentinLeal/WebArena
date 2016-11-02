@@ -32,12 +32,32 @@
         }
         echo "</table>";
 
-        echo "<div class=\"move form\">";
+        echo "<div class=\"move left\">";
         echo $this->Form->create('MoveFighter');
         echo $this->Form->input('MoveLeft', array('default' => $currentFighter->name, 'type' => 'hidden'));
         echo $this->Form->button('Left');
         echo $this->Form->end();
+        echo "</div>";
 
+        echo "<div class=\"move right\">";
+        echo $this->Form->create('MoveFighter');
+        echo $this->Form->input('MoveRight', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Right');
+        echo $this->Form->end();
+        echo "</div>";
+
+        echo "<div class=\"move up\">";
+        echo $this->Form->create('MoveFighter');
+        echo $this->Form->input('MoveUp', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Up');
+        echo $this->Form->end();
+        echo "</div>";
+
+        echo "<div class=\"move down\">";
+        echo $this->Form->create('MoveFighter');
+        echo $this->Form->input('MoveDown', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Down');
+        echo $this->Form->end();
         echo "</div>";
     }
     ?>
