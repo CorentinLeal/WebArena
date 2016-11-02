@@ -130,6 +130,8 @@ class FightersTable extends Table {
         else
             $result = $target[0];
 
+        pr($result);
+
         return $result;
     }
 
@@ -142,23 +144,25 @@ class FightersTable extends Table {
     public function seDeplace($fighter, $direction) {
         $event = array('name' => '', 'coordinate_x' => 0, 'coordinate_y' => 0);
 
-        $player = $fighter;
-
-        $event['name'] .= $player->name . " se déplace";
+        $event['name'] .= $fighter->name . " se déplace";
 
         $vecteur = $this->vecteur($direction);
 
-        $event['name'] .= $player->coordinate_x + $vecteur['x'];
-        $event['name'] .= $player->coordinate_y + $vecteur['y'];
+        $event['name'] .= $fighter->coordinate_x + $vecteur['x'];
+        $event['name'] .= $fighter->coordinate_y + $vecteur['y'];
 
         /*
          * On vérifie si un Combattant ne se trouve pas déjà sur la case cible
          */
-        if ($this->estLa($player, $vecteur) == 0) {
-
-            $this->save($player);
-        } else
+        if ($this->estLa($fighter, $vecteur) == 0) {
+            pr($fighter);
+            if($this->save($fighter)){
+                pr($this);
+            }
+        } else {
+            pr("tata");
             $event['name'] .= " mais se heurte à quelqu'un.";
+        }
 
         return $event;
     }

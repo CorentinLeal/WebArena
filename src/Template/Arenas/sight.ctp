@@ -32,15 +32,15 @@
         }
         echo "</table>";
 
+        echo "<div class=\"move form\">";
+        echo $this->Form->create('MoveFighter');
+        echo $this->Form->input('MoveLeft', array('default' => $currentFighter->name, 'type' => 'hidden'));
+        echo $this->Form->button('Left');
+        echo $this->Form->end();
 
-
+        echo "</div>";
     }
     ?>
 
-    <div class="move form">
-        <?= $this->Form->create('Move') ?>
-        <?= $this->Form->button('Left'); ?>
-        <?= $this->Form->end() ?>
-    </div>
 
 </div>
