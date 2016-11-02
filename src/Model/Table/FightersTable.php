@@ -171,6 +171,11 @@ class FightersTable extends Table {
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
+        
+        if($this->getFighterByUserAndName($playerId, $name))
+        {
+            return null;
+        }
 
 
         //Choix d'un couple (x,y) de coordonnée aléatoire dans l'arène
