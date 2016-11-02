@@ -1,21 +1,24 @@
 <?php
 
-class Event extends AppModel {
+class Event extends AppModel
+{
 
-    public function enregistrer($event) {
+    public function enregistrer($event)
+    {
 
         $this->create();
         $datas = array('Event' => array(
-                'name' => $event['name'],
-                'coordinate_x' => $event['coordinate_x'],
-                'coordinate_y' => $event['coordinate_y'],
-                'date' => date('Y-m-d H:i:s', strtotime("now"))
-            )
+            'name' => $event['name'],
+            'coordinate_x' => $event['coordinate_x'],
+            'coordinate_y' => $event['coordinate_y'],
+            'date' => date('Y-m-d H:i:s', strtotime("now"))
+        )
         );
         $this->save($datas);
     }
 
-    public function description($id) {
+    public function description($id)
+    {
         $result = "";
 
         $event = $this->findById($id);
@@ -27,7 +30,8 @@ class Event extends AppModel {
         return $result;
     }
 
-    public function listeEvenements($coord, $range) {
+    public function listeEvenements($coord, $range)
+    {
         $res = array();
         $inRange = array();
         for ($x = 0; $x <= $range; $x++) {
