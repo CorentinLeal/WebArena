@@ -30,14 +30,14 @@ class FightersTable extends Table {
     public function getFighterByUserAndName($user_id, $name) {
 
         $datafighter = $this->find('all', array('conditions' => array('player_id' => $user_id, 'name' => $name)))->toArray();
-        
-        if($datafighter == null){
+
+        if ($datafighter == null) {
             return null;
         }
-        
+
         $id = $datafighter[0]['id'];
         $fighter = $this->get($id);
-        
+
 
         return $fighter;
     }
@@ -48,10 +48,10 @@ class FightersTable extends Table {
      */
 
     public function getAllFightersByUser($user_id) {
-        
+
         $fighters = $this->find('all', array('conditions' => array('player_id' => $user_id)))->toArray();
         foreach ($fighters as $fighter) {
-            $fighter = $fighter -> toArray();
+            $fighter = $fighter->toArray();
             $id = $fighter[0]['id'];
             $fighter = $this->get($id);
             $result = array_merge($result, array($fighter->name => $fighter->name));
@@ -66,15 +66,13 @@ class FightersTable extends Table {
      */
 
     public function getFighterByName($name) {
-        
+
         $datafighter = $this->findByName($name)->toArray();
         $id = $datafighter[0]['id'];
         $fighter = $this->get($id);
 
         return $fighter;
     }
-
-
 
     /*
      * Cette fonction crée un vecteur utilisé pour la gestion des déplacements du Combattant.
@@ -115,8 +113,8 @@ class FightersTable extends Table {
         $player = $fighter;
         $target = array();
         $result = -1;
-        
-        
+
+
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
 
@@ -159,7 +157,7 @@ class FightersTable extends Table {
          * On vérifie si un Combattant ne se trouve pas déjà sur la case cible
          */
         if ($this->estLa($player, $vecteur) == 0) {
-            
+
             $this->save($player);
         } else
             $event['name'] .= " mais se heurte à quelqu'un.";
@@ -177,9 +175,8 @@ class FightersTable extends Table {
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
-        
-        if($this->getFighterByUserAndName($playerId, $name))
-        {
+
+        if ($this->getFighterByUserAndName($playerId, $name)) {
             return null;
         }
 
@@ -193,7 +190,7 @@ class FightersTable extends Table {
 
         $createFighter = array('name' => $name,
             'level' => 1,
-            'xp' => 0, 
+            'xp' => 0,
             'coordinate_x' => $coord['coordinate_x'],
             'coordinate_y' => $coord['coordinate_y'],
             'skill_sight' => 2,
@@ -268,7 +265,6 @@ class FightersTable extends Table {
 
     public function levelUp($fighter, $stat) {
 
-        pr($stat);
         $XPUP = Configure::read('XPUP');
 
         //Si le Fighter à XPUP d'xp au moins
@@ -277,16 +273,21 @@ class FightersTable extends Table {
             //Retrait de XPUP d'xp, incrément du level, amélioration d'une stat et remise au max des HP
             $fighter->xp -= $XPUP;
             $fighter->level ++;
-
-            if ($stat = 'health') {
-                $fighter->skill_health ++;
-            } else if ($stat = 'sight') {
-                $fighter->skill_sight ++;
-            } else if ($stat = 'strenght')
-                $fighter->skill_strenght ++;
-            }
             
-            $fighter->current_health = $fighter->skill_health;
+            switch ($stat) {
+                case 'health':
+                    $fighter->skill_health ++;
+                    break;
+                case 'sight':
+                    $fighter->skill_sight ++;
+                    break;
+                case 'strength':
+                    $fighter->skill_strength ++;
+                    break;
+            }
+        }
+
+        $fighter->current_health = $fighter->skill_health;
 
         return $fighter;
     }
