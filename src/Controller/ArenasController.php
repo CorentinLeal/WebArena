@@ -41,7 +41,7 @@ class ArenasController extends AppController {
                 $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
 
                 if ($fighter==null) {
-                    $this->Flash->success(__("Le combattant n'a pas pu être enregistré! (Vous possedez peut etre déjà un fighter avec ce nom)"));
+                    $this->Flash->success(__("Le combattant n'a pas pu être enregistré! (Vous possedez peut etre déjà un fighter avec ce nom)   "));
                 } else if ($this->Fighters->save($fighter)){
                     $this->Flash->success(__("Combattant enregistré !"));
                     $this->set('fighter', $fighter);
