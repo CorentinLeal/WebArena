@@ -2,13 +2,10 @@
 $this->Html->meta('description', 'WebArena le site de jeu de combat en arène multijoueurs', array('inline' => false));
 ?>
 
-<div class="jumbotron">
-    <h1>Bienvenue dans WebArenas</h1>
-
-
-
+<div class="main">
+    <h1>Bienvenue dans WebArena</h1>
 </div>
-<div class="panel panel-info">
+<div class="panel">
     <div class="panel-heading">
         <div class="panel-title"><h2>Le jeu</h2></div>
     </div>
