@@ -34,22 +34,22 @@ class ArenasController extends AppController {
         $this->loadModel('Fighters');
 
         if ($this->request->is('post')) {
-
+        
             //Creer un nouveau combattant
-            if (array_key_exists('nom', $this->request->data)) {
+            if (array_key_exists('nom', $this->request->data) && $this->request->data['nom']!=null) {
                 $name = $this->request->data('nom');
                 $fighter = $this->Fighters->createFighter($this->Auth->user('id'), $name);
 
-                if ($this->Fighters->save($fighter)) {
+                if ($fighter==null) {
+                    $this->Flash->success(__("Le combattant n'a pas pu être enregistré! (Vous possedez peut etre déjà un fighter avec ce nom)"));
+                } else if ($this->Fighters->save($fighter)){
                     $this->Flash->success(__("Combattant enregistré !"));
                     $this->set('fighter', $fighter);
-                } else {
-                    $this->Flash->success(__("Le combattant n'a pas pu être enregistré!"));
+                    
                 }
 
-
                 //selectionner un combattant pour en afficher ses caractéristiques
-            } else if (array_key_exists('choix', $this->request->data)) {
+            } else if (array_key_exists('choix', $this->request->data)&& $this->request->data['choix']!=null) {
                 $name = $this->request->data('choix');
 
                 $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $name);
@@ -69,12 +69,15 @@ class ArenasController extends AppController {
                     $this->set('canLevelUp', false);
                 $this->set('fighter', $fighter);
             }
+            
 
             //Passage de niveau du Fighter séléctionné
             // augmentation du skill health
-            else if (array_key_exists('FighterLevelUpHealth', $this->request->data)) {
+            else if (array_key_exists('LevelUpHealth', $this->request->data)&& $this->request->data['LevelUpHealth']!=null) {
+                
                 //Récupération du Fighter à partir de son nom et de son Player
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpHealth']);
+                
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $fighter->name);
 
                 // Méthode de passage de niveau avec le skill renseigné
                 $fighter = $this->Fighters->levelUp($fighter, 'health');
@@ -86,10 +89,15 @@ class ArenasController extends AppController {
                 } else
                     $this->set('canLevelUp', false);
 
+                if ($this->Fighters->save($fighter)) {
+                    $this->Flash->success(__("Combattant enregistré !"));
+                    $this->set('fighter', $fighter);
+                }
+
                 //augmentation du skill vision
-            } else if (array_key_exists('FighterLevelUpSight', $this->request->data)) {
+            } else if (array_key_exists('LevelUpSight', $this->request->data) && $this->request->data['LevelUpSight']!=null) {
                 //Récupération du Fighter à partir de son nom et de son User
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpSight']);
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $fighter->name);
 
                 // Méthode de passage de niveau avec le skill renseigné
                 $fighter = $this->Fighters->levelUp($fighter, 'sight');
@@ -102,14 +110,19 @@ class ArenasController extends AppController {
                 } else
                     $this->set('canLevelUp', false);
 
+                if ($this->Fighters->save($fighter)) {
+                    $this->Flash->success(__("Combattant enregistré !"));
+                    $this->set('fighter', $fighter);
+                }
+
                 //augmentation du skill force
-            } else if (array_key_exists('FighterLevelUpStrength', $this->request->data)) {
+            } else if (array_key_exists('LevelUpStrength', $this->request->data) && $this->request->data['LevelUpStrength']!=null) {
                 //Récupération du Fighter à partir de son nom et de son User
-                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $this->request->data['FighterLevelUpStrength']);
+                $fighter = $this->Fighters->getFighterByUserAndName($this->Auth->user('id'), $fighter->name);
 
                 // Méthode de passage de niveau avec le skill renseigné
                 $fighter = $this->Fighters->levelUp($fighter, 'strength');
-                $this->set('raw', $fighter);
+                $this->set('fighter', $fighter);
 
                 //Détermination de la possibilité de passer un niveau
                 if ($this->Fighters->canLevelUp($fighter)) {
@@ -117,6 +130,10 @@ class ArenasController extends AppController {
                     $this->set('fighter', $fighter);
                 } else
                     $this->set('canLevelUp', false);
+                if ($this->Fighters->save($fighter)) {
+                    $this->Flash->success(__("Combattant enregistré !"));
+                    $this->set('fighter', $fighter);
+                }
             }
         }
     }
