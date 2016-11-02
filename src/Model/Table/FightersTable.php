@@ -110,21 +110,19 @@ class FightersTable extends Table {
      */
 
     public function estLa($fighter, $vecteur) {
-        $player = $fighter;
         $target = array();
         $result = -1;
-
 
         $MAPWIDTH = Configure::read('MAPWIDTH');
         $MAPHEIGHT = Configure::read('MAPHEIGHT');
 
-        if ((($player->coordinate_x + $vecteur['x']) >= 0) &&
-                (($player->coordinate_x + $vecteur['x']) < $MAPWIDTH) &&
-                (($player->coordinate_y + $vecteur['y'] >= 0) &&
-                (($player->coordinate_y + $vecteur['y']) < $MAPHEIGHT)
+        if ((($fighter->coordinate_x + $vecteur['x']) >= 0) &&
+                (($fighter->coordinate_x + $vecteur['x']) < $MAPWIDTH) &&
+                (($fighter->coordinate_y + $vecteur['y'] >= 0) &&
+                (($fighter->coordinate_y + $vecteur['y']) < $MAPHEIGHT)
                 )
         ) {
-            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($player->coordinate_x + $vecteur['x']))));
+            $target = $this->find('all', array('conditions' => array('coordinate_x' => ($fighter->coordinate_x + $vecteur['x']))))->toArray();
         } else
             $result = -2;
         if (count($target) == 0)
